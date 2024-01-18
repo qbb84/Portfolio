@@ -5,11 +5,7 @@ import { Perf } from "r3f-perf";
 import { useRef } from "react";
 import { DirectionalLight, DirectionalLightHelper } from "three";
 
-interface Movement {
-  move?: boolean;
-}
-
-export default function Lighting({ move = false }: Movement) {
+export default function Debug(props) {
   const { position } = useControls({
     position: {
       value: { x: -2, y: 0 },
@@ -21,12 +17,7 @@ export default function Lighting({ move = false }: Movement) {
 
   return (
     <>
-      <Perf position="top-left" />
-      <spotLight
-        ref={lightRef}
-        position={[position.x, position.y, 3]}
-        intensity={5}
-      />
+      <Perf position="bottom-right" {...props} />
     </>
   );
 }

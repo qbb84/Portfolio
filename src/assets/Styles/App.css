@@ -10,7 +10,7 @@ body,
   background-color: black;
 }
 
-.label > div {
+.scrollBtn > div {
   font-family: "Times New Roman", Times, serif;
   position: absolute;
   background: black;
