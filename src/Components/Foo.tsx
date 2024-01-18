@@ -1,6 +1,7 @@
+import { Props } from "@react-three/fiber";
 import {useRef} from "react";
 
-export default function Foo(props) {
+export default function Foo(props: Props) {
     const ref = useRef();
     return (
         <>
