@@ -26,6 +26,7 @@ export default function CustomObject() {
                     count={verticesCount}
                     itemSize={3}
                     array={positions}
+
                 />
             </bufferGeometry>
             <meshBasicMaterial color="red" side={THREE.DoubleSide}/>

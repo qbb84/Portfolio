@@ -14,6 +14,8 @@ function App() {
                     fov: 50,
                     near: 0.1,
                     position: [3, 2, 6],
+                    
+                
                 }}
             >
                 <Debug/>
