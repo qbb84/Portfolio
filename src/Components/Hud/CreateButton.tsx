@@ -1,17 +1,15 @@
-import { Html } from "@react-three/drei";
+import { ReactNode } from 'react';
 
 interface BtnProps {
-  name?: string;
+  name?: string | ReactNode;
   divClass?: string;
   btnClass?: string;
-  isStatic?: boolean;
 }
 
 export default function CreateButton({
-  name = "btn",
-  divClass = "scrollText",
-  btnClass = "scrollBtn",
-  isStatic = true,
+  name = 'btn',
+  divClass = 'scrollText',
+  btnClass = 'scrollBtn',
 }: BtnProps) {
   return (
     <>
