@@ -7,17 +7,26 @@ body,
   width: 100%;
   height: 100%;
   overflow: hidden;
-  background-color: black;
+  background-color: #eee2de;
 }
 
 .scrollBtn > div {
   font-family: "Times New Roman", Times, serif;
   position: absolute;
-  background: black;
+  background: #b31312;
   color: white;
-  padding: 15px;
+  padding: 18px;
   white-space: nowrap;
   overflow: hidden;
-  border-radius: 30px;
+  border-radius: 9px;
   user-select: none;
+  cursor: pointer;
+  visibility: visible;
+
+  top: 20px;
+
+  &:hover {
+    background: #b31712;
+    color: black;
+  }
 }
