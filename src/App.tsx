@@ -11,6 +11,8 @@ function App() {
         gl={{ antialias: true }}
         camera={{
           fov: 60,
+          position: [6.0, 12.93, -7.37],
+          rotation: [0, 1.0, 0],
         }}
       >
         <Loading />

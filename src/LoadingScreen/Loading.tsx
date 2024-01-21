@@ -1,8 +1,11 @@
-import { Center, Float, Html, Text3D, useProgress } from '@react-three/drei';
+import { Float, Html, useProgress } from '@react-three/drei';
 import { Suspense, useEffect, useState } from 'react';
-import { Color } from 'three';
 import { Room } from '../Components/ModelRender/Room';
 import Debug from '../Components/Test/Debug';
+import Intro from './Intro';
+import RandomCircles from './RandomCircles';
+import { useThree } from '@react-three/fiber';
+import Logo from './Logo';
 
 function Load() {
   const { progress } = useProgress();
@@ -29,18 +32,30 @@ function Load() {
 
   return (
     <>
+      <RandomCircles />
+
+      <Html center>
+        <div className="circle-1"></div>
+        <div className="circle-2"></div>
+        <div className="circle-3"></div>
+        <div className="circle-4"></div>
+        <div className="circle-5"></div>
+        <div className="circle-6"></div>
+      </Html>
       <Float>
-        <Center position={[0, 1, 0]}>
+        <Logo />
+
+        {/* <Center position={[0, 0.5, 0]}>
           <Text3D
-            font={'./fonts/bubble.json'}
+            font={'./fonts/fairy.json'}
             rotation={[0, 0, 0]}
             position={[5, 5, 5]}
-            scale={0.7}
+            scale={0.4}
           >
             {displayText}
-            <meshBasicMaterial color={new Color(Color.NAMES.brown)} />
+            <meshBasicMaterial color={new Color('#F4976C')} />
           </Text3D>
-        </Center>
+        </Center> */}
         <Html center>
           <div className="progress-bar">
             <div className="progress-bar-background">
@@ -79,7 +94,10 @@ export default function Loading() {
       {!showMainContent && <Load />}
       {showMainContent && (
         <>
-          <Room />
+          <Logo />
+          <Room position={[5, 5, 5]} />
+
+          <Intro />
           <Debug />
         </>
       )}

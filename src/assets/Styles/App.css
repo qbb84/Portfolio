@@ -7,11 +7,11 @@ body,
   width: 100%;
   height: 100%;
   overflow: hidden;
-  background-color: #eee2de;
+  background-color: #fbe8a6;
 }
 
 .progress-bar {
-  margin-top: 150px;
+  margin-top: 130px;
   width: 400px;
   height: 40px;
   position: absolute;
@@ -19,26 +19,28 @@ body,
   right: 50%;
   margin-left: -200px; /* half width */
   margin-right: -200px; /* half  width */
-  background-color: #ff0505;
+  background-color: #84dfe5;
   transition: opacity 0.5s ease-in-out;
 
   border-radius: 30px;
   box-shadow: 6px 6px 0px 0px rgba(0, 0, 0, 0.445);
-  border: 3px solid #ce0909;
+  border: 3px solid #73ced4;
+
+  animation: bounceIn 1s;
 }
 .progress-bar-background {
-  background-color: #c50e0e;
+  background-color: #71c6cc;
   height: 18px;
   right: 200px;
   transform: translate(0, 12px);
-  margin-left: 3px;
-  margin-right: 3px;
+  margin-left: 9px;
+  margin-right: 9px;
 
   border-radius: 90px;
 }
 
 .progress-bar-inner {
-  background-color: #ffffff;
+  background: #f4976c;
   height: 12px;
   right: 200px;
   margin-left: 3px;
@@ -46,4 +48,95 @@ body,
   margin-right: 3px;
 
   border-radius: 60px;
+}
+
+.luke {
+  transform: translate(0, -150px);
+  scale: 0.7;
+}
+
+.luke-text {
+  animation: bounceIn 1s;
+}
+
+@font-face {
+  font-family: 'clover';
+  src: url('./fonts/fairy.ttf') format('truetype');
+}
+
+@keyframes bounceIn {
+  0% {
+    transform: scale(0.1);
+    opacity: 0;
+  }
+  60% {
+    transform: scale(1.2);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes breathe {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.button-outer {
+  margin-top: 130px;
+  width: 210px;
+  height: 75px;
+  position: absolute;
+  left: 50%;
+  right: 50%;
+  margin-left: -105px; /* half width */
+  margin-right: -105px; /* half  width */
+  background-color: #73ced4;
+  box-shadow: 6px 6px 0px 0px rgba(0, 0, 0, 0.445);
+
+  border-radius: 15px;
+
+  animation: breathe 3s infinite;
+}
+
+.button-outer:hover {
+  background-color: #84dfe5;
+  transition: 0.5s;
+  scale: 0.96;
+  transition: ease-out 0.5s;
+
+  animation: none;
+}
+
+.intro-btn {
+  position: absolute;
+  transform: translate(0, 1px);
+  width: 200px;
+  height: 70px;
+  right: 35%;
+  margin-left: -30px;
+  margin-right: -67px;
+  border-radius: 10px;
+
+  border: 2px solid #73ced4;
+
+  background-color: #84dfe5;
+}
+
+.btn-text {
+  transform: translate();
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande',
+    'Lucida Sans', Arial, sans-serif;
+  color: whitesmoke;
+  font-size: 20px;
+  text-shadow: black 12px;
+  box-shadow: 5px black;
 }
