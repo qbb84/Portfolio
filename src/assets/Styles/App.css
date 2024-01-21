@@ -10,118 +10,40 @@ body,
   background-color: #eee2de;
 }
 
-.scrollBtn {
-  font-family: 'Times New Roman', Times, serif;
+.progress-bar {
+  margin-top: 150px;
+  width: 400px;
+  height: 40px;
   position: absolute;
-  background: #b31312;
-  color: white;
-  padding: 18px;
-  white-space: nowrap;
-  overflow: hidden;
-  border-radius: 9px;
-  user-select: none;
-  cursor: pointer;
-  visibility: visible;
-
-  &:hover {
-    background: #b31712;
-    color: black;
-  }
-}
-
-body {
-  background-color: #000;
-}
-
-*,
-:after,
-:before {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-section {
-  height: 100vh;
-  width: 100%;
-  display: table;
-}
-section.ok {
-  background-color: #555;
-}
-
-p {
-  color: #b31312;
-  font-family: arial;
-  display: table-cell;
-  text-align: center;
-  vertical-align: middle;
-}
-
-.scroll-down {
-  opacity: 1;
-  -webkit-transition: all 0.5s ease-in 3s;
-  transition: all 0.5s ease-in 3s;
-}
-
-.scroll-down {
-  position: absolute;
-  bottom: 30px;
   left: 50%;
-  margin-left: -16px;
-  display: block;
-  width: 42px;
-  height: 42px;
-  border: 2px solid #b31312;
-  background-size: 14px auto;
-  border-radius: 50%;
-  z-index: 2;
-  -webkit-animation: bounce 2s infinite 2s;
-  animation: bounce 2s infinite 2s;
-  -webkit-transition: all 0.2s ease-in;
-  transition: all 0.2s ease-in;
+  right: 50%;
+  margin-left: -200px; /* half width */
+  margin-right: -200px; /* half  width */
+  background-color: #ff0505;
+  transition: opacity 0.5s ease-in-out;
+
+  border-radius: 30px;
+  box-shadow: 6px 6px 0px 0px rgba(0, 0, 0, 0.445);
+  border: 3px solid #ce0909;
+}
+.progress-bar-background {
+  background-color: #c50e0e;
+  height: 18px;
+  right: 200px;
+  transform: translate(0, 12px);
+  margin-left: 3px;
+  margin-right: 3px;
+
+  border-radius: 90px;
 }
 
-.scroll-down:before {
-  position: absolute;
-  top: calc(50% - 8px);
-  left: calc(50% - 6px);
-  transform: rotate(-45deg);
-  display: block;
-  width: 12px;
+.progress-bar-inner {
+  background-color: #ffffff;
   height: 12px;
-  content: '';
-  border: 2px solid #b31312;
-  border-width: 0px 0 2px 2px;
-}
+  right: 200px;
+  margin-left: 3px;
+  transform: translate(0, 3px);
+  margin-right: 3px;
 
-.scroll-down:hover {
-  transition: all 0.5s ease-in-out;
-  background-color: #b31312;
-
-  .scroll-down:hover::before {
-    border: 2px solid #fff;
-  }
-}
-
-@keyframes bounce {
-  0%,
-  100%,
-  20%,
-  50%,
-  80% {
-    -webkit-transform: translateY(0);
-    -ms-transform: translateY(0);
-    transform: translateY(0);
-  }
-  40% {
-    -webkit-transform: translateY(-10px);
-    -ms-transform: translateY(-10px);
-    transform: translateY(-10px);
-  }
-  60% {
-    -webkit-transform: translateY(-5px);
-    -ms-transform: translateY(-5px);
-    transform: translateY(-5px);
-  }
+  border-radius: 60px;
 }
