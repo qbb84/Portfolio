@@ -32,32 +32,10 @@ function Load() {
 
   return (
     <>
-      <RandomCircles />
-
-      <Html center>
-        <div className="circle-1"></div>
-        <div className="circle-2"></div>
-        <div className="circle-3"></div>
-        <div className="circle-4"></div>
-        <div className="circle-5"></div>
-        <div className="circle-6"></div>
-      </Html>
       <Float>
         <Logo />
-
-        {/* <Center position={[0, 0.5, 0]}>
-          <Text3D
-            font={'./fonts/fairy.json'}
-            rotation={[0, 0, 0]}
-            position={[5, 5, 5]}
-            scale={0.4}
-          >
-            {displayText}
-            <meshBasicMaterial color={new Color('#F4976C')} />
-          </Text3D>
-        </Center> */}
-        <Html center>
-          <div className="progress-bar">
+        <Html center zIndexRange={[50]}>
+          <div className="progress-bar container">
             <div className="progress-bar-background">
               <div
                 className="progress-bar-inner"
@@ -71,8 +49,10 @@ function Load() {
             </div>
           </div>
         </Html>
+
         {/* <Html center>{displayedProgress.toFixed(2)} % loaded</Html> */}
       </Float>
+      <LoadingSleepAnimation />
     </>
   );
 }
@@ -94,13 +74,25 @@ export default function Loading() {
       {!showMainContent && <Load />}
       {showMainContent && (
         <>
-          <Logo />
-          <Room position={[5, 5, 5]} />
+          <Room position={[5, 5, 5]} rotation={[0, 4.4, 0]} />
 
           <Intro />
           <Debug />
         </>
       )}
     </Suspense>
+  );
+}
+
+function LoadingSleepAnimation() {
+  return (
+    <>
+      <Html position={[0, 21, 0]} zIndexRange={[0, 6999999]}>
+        <div className="eyes-shutting-top"></div>
+      </Html>
+      <Html position={[0, -61, 0]} zIndexRange={[-1]}>
+        <div className="eyes-shutting-bottom"></div>
+      </Html>
+    </>
   );
 }

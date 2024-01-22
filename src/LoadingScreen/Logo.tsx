@@ -1,14 +1,10 @@
 import { Html } from '@react-three/drei';
 
-interface props {
-  classStyle?: string;
-}
-
-export default function Logo({ classStyle = 'luke' }: props) {
+export default function Logo() {
   return (
     <>
-      <Html center>
-        <div className={classStyle}>
+      <Html center zIndexRange={[50]}>
+        <div className={'luke container'}>
           <img src="./images/luke.png" alt="Luke" className="luke-text" />
         </div>
       </Html>
