@@ -1,4 +1,4 @@
-import { Float, Html, useProgress } from '@react-three/drei';
+import { Float, Html, SoftShadows, useProgress } from '@react-three/drei';
 import { Suspense, useEffect, useState } from 'react';
 import { Room } from '../Components/ModelRender/Room';
 import Debug from '../Components/Test/Debug';
@@ -34,6 +34,7 @@ function Load() {
     <>
       <Float>
         <Logo />
+        <LoadingIcon />
         <Html center zIndexRange={[50]}>
           <div className="progress-bar container">
             <div className="progress-bar-background">
@@ -92,6 +93,16 @@ function LoadingSleepAnimation() {
       </Html>
       <Html position={[0, -61, 0]} zIndexRange={[-1]}>
         <div className="eyes-shutting-bottom"></div>
+      </Html>
+    </>
+  );
+}
+
+function LoadingIcon() {
+  return (
+    <>
+      <Html>
+        <span className="loader"></span>
       </Html>
     </>
   );

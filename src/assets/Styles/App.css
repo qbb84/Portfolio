@@ -155,10 +155,12 @@ body,
   visibility: hidden;
   animation: blink 2s 0.5s forwards;
 
-  border-radius: 20px;
-  border-bottom: 1px solid whitesmoke;
+  border-bottom: 1px solid white;
 
-  box-shadow: 50px 50px 50px 50px rgba(0, 0, 0, 0.774);
+  box-shadow: 30px 30px 30px 30px rgba(0, 0, 0, 0.774);
+
+  border-bottom-left-radius: 30%; /* Make the bottom left corner more rounded */
+  border-bottom-right-radius: 30%;
 }
 
 .eyes-shutting-bottom {
@@ -178,11 +180,12 @@ body,
   transform-origin: top;
   animation: blink 2s 0.5s forwards;
 
-  box-shadow: 50px 50px 50px 50px rgba(0, 0, 0, 0.774);
+  box-shadow: 30px 30px 30px 30px rgba(0, 0, 0, 0.774);
 
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid white;
 
-  border-radius: 20px;
+  border-bottom-left-radius: 30%; /* Make the bottom left corner more rounded */
+  border-bottom-right-radius: 30%;
 }
 
 .container {
@@ -200,11 +203,15 @@ body,
   }
   60% {
     height: 16vh;
+    border-bottom-left-radius: 10%; /* Make the bottom left corner more rounded */
+    border-bottom-right-radius: 10%;
   }
   100% {
     height: 51.5vh;
     visibility: visible;
     opacity: 0.99;
+    border-bottom-left-radius: 0%; /* Make the bottom left corner more rounded */
+    border-bottom-right-radius: 0%;
   }
   50% {
     height: 20vh;
@@ -222,4 +229,154 @@ body,
   100% {
     filter: blur(12px);
   }
+}
+
+button {
+  position: relative;
+  padding: 12px 35px;
+  background: #fec195;
+  font-size: 17px;
+  font-weight: 500;
+  color: #181818;
+  border: 3px solid #fec195;
+  border-radius: 8px;
+  box-shadow: 0 0 0 #fec1958c;
+  transition: all 0.3s ease-in-out;
+  cursor: pointer;
+}
+
+.star-1 {
+  position: absolute;
+  top: 20%;
+  left: 20%;
+  width: 25px;
+  height: auto;
+  filter: drop-shadow(0 0 0 #fffdef);
+  z-index: -5;
+  transition: all 1s cubic-bezier(0.05, 0.83, 0.43, 0.96);
+}
+
+.star-2 {
+  position: absolute;
+  top: 45%;
+  left: 45%;
+  width: 15px;
+  height: auto;
+  filter: drop-shadow(0 0 0 #fffdef);
+  z-index: -5;
+  transition: all 1s cubic-bezier(0, 0.4, 0, 1.01);
+}
+
+.star-3 {
+  position: absolute;
+  top: 40%;
+  left: 40%;
+  width: 5px;
+  height: auto;
+  filter: drop-shadow(0 0 0 #fffdef);
+  z-index: -5;
+  transition: all 1s cubic-bezier(0, 0.4, 0, 1.01);
+}
+
+.star-4 {
+  position: absolute;
+  top: 20%;
+  left: 40%;
+  width: 8px;
+  height: auto;
+  filter: drop-shadow(0 0 0 #fffdef);
+  z-index: -5;
+  transition: all 0.8s cubic-bezier(0, 0.4, 0, 1.01);
+}
+
+.star-5 {
+  position: absolute;
+  top: 25%;
+  left: 45%;
+  width: 15px;
+  height: auto;
+  filter: drop-shadow(0 0 0 #fffdef);
+  z-index: -5;
+  transition: all 0.6s cubic-bezier(0, 0.4, 0, 1.01);
+}
+
+.star-6 {
+  position: absolute;
+  top: 5%;
+  left: 50%;
+  width: 5px;
+  height: auto;
+  filter: drop-shadow(0 0 0 #fffdef);
+  z-index: -5;
+  transition: all 0.8s ease;
+}
+
+button:hover {
+  background: transparent;
+  color: #fec195;
+  box-shadow: 0 0 25px #fec1958c;
+}
+
+button:hover .star-1 {
+  position: absolute;
+  top: -80%;
+  left: -30%;
+  width: 25px;
+  height: auto;
+  filter: drop-shadow(0 0 10px #fffdef);
+  z-index: 2;
+}
+
+button:hover .star-2 {
+  position: absolute;
+  top: -25%;
+  left: 10%;
+  width: 15px;
+  height: auto;
+  filter: drop-shadow(0 0 10px #fffdef);
+  z-index: 2;
+}
+
+button:hover .star-3 {
+  position: absolute;
+  top: 55%;
+  left: 25%;
+  width: 5px;
+  height: auto;
+  filter: drop-shadow(0 0 10px #fffdef);
+  z-index: 2;
+}
+
+button:hover .star-4 {
+  position: absolute;
+  top: 30%;
+  left: 80%;
+  width: 8px;
+  height: auto;
+  filter: drop-shadow(0 0 10px #fffdef);
+  z-index: 2;
+}
+
+button:hover .star-5 {
+  position: absolute;
+  top: 25%;
+  left: 115%;
+  width: 15px;
+  height: auto;
+  filter: drop-shadow(0 0 10px #fffdef);
+  z-index: 2;
+}
+
+button:hover .star-6 {
+  position: absolute;
+  top: 5%;
+  left: 60%;
+  width: 5px;
+  height: auto;
+  filter: drop-shadow(0 0 10px #fffdef);
+  z-index: 2;
+}
+
+.fil0 {
+  fill: #fffdef;
 }

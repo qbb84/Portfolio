@@ -883,22 +883,22 @@ export function Room(props: JSX.IntrinsicElements['group']) {
       </group>
       {console.log(bedRef.current)}
       {
-        <Html center>
-          <div className="button-outer">
-            <div className="button-background">
-              <div className="button-inner">
-                <button
-                  className="intro-btn"
-                  onClick={() => {
-                    setIsVisible(!isVisible);
-                  }}
-                >
-                  <p className="btn-text">Wake up</p>
-                </button>
-              </div>
-            </div>
-          </div>
-        </Html>
+        // <Html center>
+        //   <div className="button-outer">
+        //     <div className="button-background">
+        //       <div className="button-inner">
+        //         <button
+        //           className="intro-btn"
+        //           onClick={() => {
+        //             setIsVisible(!isVisible);
+        //           }}
+        //         >
+        //           <p className="btn-text">Wake up</p>
+        //         </button>
+        //       </div>
+        //     </div>
+        //   </div>
+        // </Html>
       }
       {/* <mesh
         geometry={bedRef.current.geometry}
