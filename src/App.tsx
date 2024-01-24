@@ -15,7 +15,7 @@ function App() {
         }}
       >
         <Loading />
-        <OrbitControl />
+        {/* <OrbitControl /> */}
       </Canvas>
     </>
   );

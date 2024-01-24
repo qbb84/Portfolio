@@ -1,13 +1,14 @@
 import { CameraShake, Float, Html, useProgress } from '@react-three/drei';
-import { Suspense, useEffect, useState } from 'react';
+import { Suspense, useEffect, useRef, useState } from 'react';
 import { Room } from '../Components/ModelRender/Room';
 import Debug from '../Components/Test/Debug';
 import Intro from './Intro';
-import Logo from './Logo';
+import Logo, { Loading2 } from './Logo';
 
 function Load() {
   const { progress } = useProgress();
   const [displayedProgress, setDisplayedProgress] = useState(0);
+  const [VisibilityContext, setVisibilityContext] = useState(true);
 
   useEffect(() => {
     let animationFrameId: number;
@@ -26,34 +27,26 @@ function Load() {
     return () => cancelAnimationFrame(animationFrameId);
   }, [progress, displayedProgress]);
 
+  useEffect(() => {
+    setTimeout(() => {
+      setVisibilityContext(false);
+    }, 5100);
+  });
+
   return (
     <>
-      <LoadingSleepAnimation />
-      <Float>
-        <Logo />
-        {/* <Html center>
-          <div className="progress-bar container">
-            <div className="progress-bar-background">
-              <div
-                className="progress-bar-inner"
-                style={{
-                  width:
-                    displayedProgress < 6
-                      ? '0%'
-                      : `calc(${displayedProgress}% - 6px)`,
-                }}
-              ></div>
-            </div>
-          </div>
-        </Html> */}
+      <LoadingSleepAnimation progress={displayedProgress.toFixed(2)} />
 
+      <Float>
+        {/* <Logo />
+        //TODO fade animations for button
         <Html center>
           <div className="loading-text-container">
             <p className="loading-text animate__animated animate__zoomInDown">
               Taking a snooze... {displayedProgress.toFixed(2)}%
             </p>
           </div>
-        </Html>
+        </Html> */}
       </Float>
     </>
   );
@@ -66,7 +59,7 @@ export default function Loading() {
   useEffect(() => {
     const playButtonTimeoutId = setTimeout(() => {
       setShowPlayButton(true);
-    }, 5100); // Show "Play" button after 2 se
+    }, 6300);
 
     const timeoutId = setTimeout(() => {
       setShowMainContent(true);
@@ -87,12 +80,19 @@ export default function Loading() {
       {!showMainContent && (
         <>
           <Load />
-          <Html>
-            <div>
-              {showPlayButton && (
-                <button onClick={handlePlayClick}>Play</button>
-              )}
-            </div>
+          <Html center>
+            {showPlayButton && (
+              <button
+                className="button"
+                data-text="Awesome"
+                onClick={handlePlayClick}
+              >
+                <span className="actual-text">&nbsp;wake up&nbsp;</span>
+                <span aria-hidden="true" className="hover-text">
+                  &nbsp;wake up&nbsp;
+                </span>
+              </button>
+            )}
           </Html>
         </>
       )}
@@ -108,7 +108,7 @@ export default function Loading() {
 }
 
 /* */
-export function LoadingSleepAnimation() {
+export function LoadingSleepAnimation({ progress }) {
   return (
     <>
       <CameraShake intensity={0.1} />
@@ -120,8 +120,15 @@ export function LoadingSleepAnimation() {
         <div className="eyes-shutting-bottom"></div>
       </Html>
       <Float>
-        <Html zIndexRange={[0]}>
-          <div className="eye"></div>
+        <Html zIndexRange={[5]} onPointerOver={() => console.log('Hovered')}>
+          <div className="eye">
+            <div className="loader">
+              <div className="intern"></div>
+              <div className="external-shadow">
+                <div className="central"></div>
+              </div>
+            </div>
+          </div>
         </Html>
       </Float>
     </>

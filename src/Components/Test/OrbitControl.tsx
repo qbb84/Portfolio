@@ -7,12 +7,6 @@ extend({ OrbitControls });
 export default function OrbitControl() {
   const { camera, gl } = useThree();
 
-  useFrame(() => {
-    {
-      console.log(camera);
-    }
-  });
-
   return (
     <>
       <orbitControls args={[camera, gl.domElement]} />
