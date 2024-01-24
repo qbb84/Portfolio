@@ -8,7 +8,7 @@ function App() {
     <>
       <Canvas
         flat
-        gl={{ antialias: true }}
+        gl={{ antialias: false }}
         camera={{
           fov: 90,
           position: [18.779424788883275, 12.114732519462178, 15.81515247860525],

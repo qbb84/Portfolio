@@ -1,10 +1,8 @@
-import { Float, Html, SoftShadows, useProgress } from '@react-three/drei';
+import { CameraShake, Float, Html, useProgress } from '@react-three/drei';
 import { Suspense, useEffect, useState } from 'react';
 import { Room } from '../Components/ModelRender/Room';
 import Debug from '../Components/Test/Debug';
 import Intro from './Intro';
-import RandomCircles from './RandomCircles';
-import { useThree } from '@react-three/fiber';
 import Logo from './Logo';
 
 function Load() {
@@ -28,14 +26,12 @@ function Load() {
     return () => cancelAnimationFrame(animationFrameId);
   }, [progress, displayedProgress]);
 
-  const displayText = "Luke's \n Exclusion";
-
   return (
     <>
+      <LoadingSleepAnimation />
       <Float>
         <Logo />
-        <LoadingIcon />
-        <Html center zIndexRange={[50]}>
+        {/* <Html center>
           <div className="progress-bar container">
             <div className="progress-bar-background">
               <div
@@ -49,35 +45,61 @@ function Load() {
               ></div>
             </div>
           </div>
-        </Html>
+        </Html> */}
 
-        {/* <Html center>{displayedProgress.toFixed(2)} % loaded</Html> */}
+        <Html center>
+          <div className="loading-text-container">
+            <p className="loading-text animate__animated animate__zoomInDown">
+              Taking a snooze... {displayedProgress.toFixed(2)}%
+            </p>
+          </div>
+        </Html>
       </Float>
-      <LoadingSleepAnimation />
     </>
   );
 }
 
 export default function Loading() {
   const [showMainContent, setShowMainContent] = useState(false);
+  const [showPlayButton, setShowPlayButton] = useState(false);
 
   useEffect(() => {
-    // Simulate a minimum delay of 3 seconds before showing the main content
+    const playButtonTimeoutId = setTimeout(() => {
+      setShowPlayButton(true);
+    }, 5100); // Show "Play" button after 2 se
+
     const timeoutId = setTimeout(() => {
       setShowMainContent(true);
-    }, 3000);
+    }, 180000);
 
-    return () => clearTimeout(timeoutId);
+    return () => {
+      clearTimeout(playButtonTimeoutId);
+      clearTimeout(timeoutId);
+    };
   }, []);
+
+  const handlePlayClick = () => {
+    setShowMainContent(true);
+  };
 
   return (
     <Suspense fallback={<Load />}>
-      {!showMainContent && <Load />}
+      {!showMainContent && (
+        <>
+          <Load />
+          <Html>
+            <div>
+              {showPlayButton && (
+                <button onClick={handlePlayClick}>Play</button>
+              )}
+            </div>
+          </Html>
+        </>
+      )}
       {showMainContent && (
         <>
-          <Room position={[5, 5, 5]} rotation={[0, 4.4, 0]} />
-
           <Intro />
+          <Room position={[5, 5, 5]} rotation={[0, 4.4, 0]} />
           <Debug />
         </>
       )}
@@ -85,25 +107,23 @@ export default function Loading() {
   );
 }
 
-function LoadingSleepAnimation() {
+/* */
+export function LoadingSleepAnimation() {
   return (
     <>
-      <Html position={[0, 21, 0]} zIndexRange={[0, 6999999]}>
+      <CameraShake intensity={0.1} />
+
+      <Html position={[0, 21, 0]}>
         <div className="eyes-shutting-top"></div>
       </Html>
-      <Html position={[0, -61, 0]} zIndexRange={[-1]}>
+      <Html position={[0, -61, 0]}>
         <div className="eyes-shutting-bottom"></div>
       </Html>
-    </>
-  );
-}
-
-function LoadingIcon() {
-  return (
-    <>
-      <Html>
-        <span className="loader"></span>
-      </Html>
+      <Float>
+        <Html zIndexRange={[0]}>
+          <div className="eye"></div>
+        </Html>
+      </Float>
     </>
   );
 }
