@@ -1,14 +1,21 @@
-import { CameraShake, Float, Html, useProgress } from '@react-three/drei';
+import {
+  CameraShake,
+  Float,
+  Html,
+  MeshPortalMaterial,
+  useProgress,
+} from '@react-three/drei';
 import { Suspense, useEffect, useRef, useState } from 'react';
 import { Room } from '../Components/ModelRender/Room';
 import Debug from '../Components/Test/Debug';
 import Intro from './Intro';
 import Logo, { Loading2 } from './Logo';
+import React from 'react';
+import { BoxGeometry } from 'three';
 
 function Load() {
   const { progress } = useProgress();
   const [displayedProgress, setDisplayedProgress] = useState(0);
-  const [VisibilityContext, setVisibilityContext] = useState(true);
 
   useEffect(() => {
     let animationFrameId: number;
@@ -26,12 +33,6 @@ function Load() {
 
     return () => cancelAnimationFrame(animationFrameId);
   }, [progress, displayedProgress]);
-
-  useEffect(() => {
-    setTimeout(() => {
-      setVisibilityContext(false);
-    }, 5100);
-  });
 
   return (
     <>
@@ -55,6 +56,7 @@ function Load() {
 export default function Loading() {
   const [showMainContent, setShowMainContent] = useState(false);
   const [showPlayButton, setShowPlayButton] = useState(false);
+  const [isClicked, setIsClicked] = useState(false);
 
   useEffect(() => {
     const playButtonTimeoutId = setTimeout(() => {
@@ -72,7 +74,11 @@ export default function Loading() {
   }, []);
 
   const handlePlayClick = () => {
-    setShowMainContent(true);
+    setIsClicked(true);
+
+    setTimeout(() => {
+      setShowMainContent(true);
+    }, 1100);
   };
 
   return (
@@ -94,6 +100,16 @@ export default function Loading() {
               </button>
             )}
           </Html>
+          {isClicked && (
+            <>
+              <Html position={[0, 21, 0]}>
+                <div className="eyes-shutting-top-click"></div>
+              </Html>
+              <Html position={[0, -61, 0]}>
+                <div className="eyes-shutting-bottom-click"></div>
+              </Html>
+            </>
+          )}
         </>
       )}
       {showMainContent && (

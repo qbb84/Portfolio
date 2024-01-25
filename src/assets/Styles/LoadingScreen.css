@@ -853,7 +853,8 @@
   background: radial-gradient(circle at center, #fff 35%, #aaa 75%);
   border-radius: 50%;
   transform: translate(-50%, -50%);
-  animation: eye 6s infinite ease-in-out 2.1s, fadeIn 20s;
+  animation: eye 6s infinite ease-in-out 2.1s, fadeIn 18s ease-in-out forwards;
+
   opacity: 0.2;
   filter: blur(3px);
 }

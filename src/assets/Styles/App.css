@@ -193,12 +193,38 @@ body,
   animation: blink 2s 0.5s forwards, blinkNewScene 1s 5.5s ease-out;
 }
 
-.eye.hoverable:hover {
-  size: 1000vh;
-  opacity: 100%;
-  background-color: yellow;
+.eyes-shutting-top-click {
+  top: 0;
+  left: 0;
+  right: 0;
+  position: absolute;
+  height: 51.5vh;
+  width: 200vh;
+  margin-left: -100vh;
+  margin-right: -100vh;
+  background: radial-gradient(90% 80% at bottom, transparent 60%, #050505 0%);
+  visibility: visible;
+  animation: blinkNewScene 1s 0.5s ease-in-out;
+  overflow: hidden;
+  filter: blur(3px);
 }
-
+.eyes-shutting-bottom-click {
+  filter: blur(3px);
+  top: 0;
+  left: 0;
+  right: 0;
+  position: absolute;
+  height: 51.5vh;
+  width: 200vh;
+  margin-left: -100vh;
+  margin-right: -100vh;
+  background: radial-gradient(90% 80% at bottom, transparent 70%, #050505 0%);
+  visibility: visible;
+  bottom: 10px;
+  transform: rotatex(180deg);
+  transform-origin: top;
+  animation: blinkNewScene 1s 0.5s ease-in-out;
+}
 .container {
   animation: blur 2s 1s forwards;
 }
@@ -335,7 +361,6 @@ body,
   color: transparent;
   -webkit-text-stroke: 1px var(--text-stroke-color);
   white-space: nowrap;
-  animation: fadeIn 2s linear;
 }
 /* this is the text, when you hover on button */
 .hover-text {
