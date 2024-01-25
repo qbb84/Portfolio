@@ -198,7 +198,7 @@ body,
   left: 0;
   right: 0;
   position: absolute;
-  height: 51.5vh;
+  height: 48vh;
   width: 200vh;
   margin-left: -100vh;
   margin-right: -100vh;
@@ -214,7 +214,7 @@ body,
   left: 0;
   right: 0;
   position: absolute;
-  height: 51.5vh;
+  height: 48vh;
   width: 200vh;
   margin-left: -100vh;
   margin-right: -100vh;
@@ -237,7 +237,7 @@ body,
     height: 23vh;
   }
   100% {
-    height: 51.5vh;
+    height: 48vh;
     visibility: visible;
     border-bottom-left-radius: 0%; /* Make the bottom left corner more rounded */
     border-bottom-right-radius: 0%;
@@ -250,14 +250,14 @@ body,
 
 @keyframes blinkNewScene {
   0% {
-    height: 51.5vh;
+    height: 48vh;
     visibility: visible;
   }
   50% {
     height: 118vh;
   }
   100% {
-    height: 51.5vh;
+    height: 48vh;
     visibility: visible;
   }
 }
@@ -361,6 +361,9 @@ body,
   color: transparent;
   -webkit-text-stroke: 1px var(--text-stroke-color);
   white-space: nowrap;
+  animation: fadeIn 1.5s 0s, pulse 2s 0s infinite linear;
+
+  scale: 0.4;
 }
 /* this is the text, when you hover on button */
 .hover-text {
@@ -423,12 +426,26 @@ body,
   position: absolute;
   color: white;
   z-index: 9999;
-  animation: derenderLoader 6.5s forwards;
+  /* animation: derenderLoader 6.5s forwards; */
+  pointer-events: auto;
 }
 
-.intern::before {
+.load-percent {
+  position: absolute;
+  color: white;
+  z-index: 9999;
+  animation: derenderLoader 6.5s forwards, fadeOut 1s 5.5s forwards;
+
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: auto;
+}
+
+.load-percent::before {
   content: '100%';
   animation: percent 2s ease-in-out infinite;
+  pointer-events: auto;
 }
 
 @keyframes rotate {
