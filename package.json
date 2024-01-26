@@ -13,6 +13,7 @@
     "@react-spring/three": "^9.7.3",
     "@react-three/drei": "^9.93.0",
     "@react-three/fiber": "8.15",
+    "@react-three/rapier": "^1.2.1",
     "animate.css": "^4.1.1",
     "gl-noise": "^1.6.1",
     "leva": "^0.9.35",

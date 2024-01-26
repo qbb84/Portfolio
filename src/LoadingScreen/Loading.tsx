@@ -1,16 +1,11 @@
-import {
-  CameraShake,
-  Float,
-  Html,
-  MeshRefractionMaterial,
-  useProgress,
-} from '@react-three/drei';
+import { CameraShake, Float, Html, useProgress } from '@react-three/drei';
+import { CuboidCollider, Physics, RigidBody } from '@react-three/rapier';
 import { Suspense, useEffect, useState } from 'react';
-import { Room, useRoomGLTF } from '../Components/ModelRender/Room';
+import { Room } from '../Components/ModelRender/Room';
+import Movement from '../Components/Movement/Movement';
 import Debug from '../Components/Test/Debug';
 import Intro from './Intro';
-import { TextureLoader, WebGLCubeRenderTarget } from 'three';
-import { useThree } from '@react-three/fiber';
+import Player from '../Components/ModelRender/Player';
 
 function Load({ handlePlayClick }) {
   const { progress } = useProgress();
@@ -100,7 +95,17 @@ export default function Loading() {
       {showMainContent && (
         <>
           <Intro />
-          <Room position={[5, 5, 5]} rotation={[0, 4.4, 0]} />
+
+          <Physics gravity={[0, -20, 0]} debug={false}>
+            {/* <Lighting /> */}
+
+            <Movement />
+            <RigidBody type="fixed" colliders="trimesh">
+              <Room position={[5, 5, 5]} rotation={[0, 4.4, 0]} />
+            </RigidBody>
+            {/* <CuboidCollider args={[1000, 5, 1000]} /> */}
+          </Physics>
+
           <Debug />
         </>
       )}
@@ -161,49 +166,6 @@ function Blink() {
       <Html position={[0, -61, 0]}>
         <div className="eyes-shutting-bottom-click"></div>
       </Html>
-    </>
-  );
-}
-
-function NewLoad({ handlePlayClick }) {
-  return (
-    <>
-      <a href="#" className="link" onClick={handlePlayClick}>
-        <svg
-          viewBox="0 0 200 200"
-          width="200"
-          height="200"
-          xmlns="http://www.w3.org/2000/svg"
-          className="link__svg"
-          aria-labelledby="link1-title link1-desc"
-        >
-          <title id="link1-title">Come quick and click this</title>
-          <desc id="link1-desc">
-            A rotating link with text placed around a circle with an arrow
-            inside
-          </desc>
-
-          <path
-            id="link-circle"
-            className="link__path"
-            d="M 20, 100 a 80,80 0 1,1 160,0 a 80,80 0 1,1 -160,0"
-            stroke="none"
-            fill="none"
-          />
-
-          <path
-            className="link__arrow"
-            d="M 75 100 L 125 100 L 110 85 M 125 100 L 110 115"
-            fill="none"
-          />
-
-          <text className="link__text">
-            <textPath href="#link-circle" stroke="none">
-              Click Me To Wake Up
-            </textPath>
-          </text>
-        </svg>
-      </a>
     </>
   );
 }

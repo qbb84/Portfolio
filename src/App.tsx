@@ -2,22 +2,37 @@
 import OrbitControl from './Components/Test/OrbitControl';
 import Loading from './LoadingScreen/Loading';
 import './assets/Styles/App.css';
+import { KeyboardControls } from '@react-three/drei';
+import { Physics } from '@react-three/rapier';
+import Movement from './Components/Movement/Movement';
 
 function App() {
   return (
-    <>
-      <Canvas
-        flat
-        gl={{ antialias: false }}
-        camera={{
-          fov: 90,
-          position: [18.779424788883275, 12.114732519462178, 15.81515247860525],
-        }}
-      >
-        <Loading />
-        {/* <OrbitControl /> */}
-      </Canvas>
-    </>
+    <KeyboardControls
+      map={[
+        { name: 'forward', keys: ['ArrowUp', 'w', 'W'] },
+        { name: 'backward', keys: ['ArrowDown', 's', 'S'] },
+        { name: 'left', keys: ['ArrowLeft', 'a', 'A'] },
+        { name: 'right', keys: ['ArrowRight', 'd', 'D'] },
+        { name: 'jump', keys: ['Space'] },
+      ]}
+    >
+      <>
+        <Canvas
+          flat
+          gl={{ antialias: false }}
+          camera={{
+            fov: 90,
+            position: [
+              18.779424788883275, 12.114732519462178, 15.81515247860525,
+            ],
+          }}
+        >
+          <Loading />
+          <OrbitControl />
+        </Canvas>
+      </>
+    </KeyboardControls>
   );
 }
 
