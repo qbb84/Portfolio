@@ -1,29 +1,38 @@
 ﻿import { Canvas } from '@react-three/fiber';
-import { BsChevronDown } from 'react-icons/bs';
-import CreateButton from './Components/Hud/CreateButton';
-import ScrollAnimation from './Components/ScrollAnimation';
-import Debug from './Components/Test/Debug';
 import OrbitControl from './Components/Test/OrbitControl';
+import Loading from './LoadingScreen/Loading';
 import './assets/Styles/App.css';
+import { KeyboardControls } from '@react-three/drei';
+import { Physics } from '@react-three/rapier';
+import Movement from './Components/Movement/Movement';
 
 function App() {
   return (
-    <>
-      <CreateButton name={<BsChevronDown />} />
-      <Canvas
-        flat
-        gl={{ antialias: false }}
-        camera={{
-          fov: 50,
-          near: 0.1,
-          position: [3, 2, 6],
-        }}
-      >
-        <Debug />
-        <OrbitControl />
-        <ScrollAnimation />
-      </Canvas>
-    </>
+    <KeyboardControls
+      map={[
+        { name: 'forward', keys: ['ArrowUp', 'w', 'W'] },
+        { name: 'backward', keys: ['ArrowDown', 's', 'S'] },
+        { name: 'left', keys: ['ArrowLeft', 'a', 'A'] },
+        { name: 'right', keys: ['ArrowRight', 'd', 'D'] },
+        { name: 'jump', keys: ['Space'] },
+      ]}
+    >
+      <>
+        <Canvas
+          flat
+          gl={{ antialias: false }}
+          camera={{
+            fov: 90,
+            position: [
+              18.779424788883275, 12.114732519462178, 15.81515247860525,
+            ],
+          }}
+        >
+          <Loading />
+          <OrbitControl />
+        </Canvas>
+      </>
+    </KeyboardControls>
   );
 }
 
