@@ -1,0 +1,13 @@
+@font-face {
+  font-family: 'chicken';
+  src: url('./fonts/ChickenCurly.ttf') format('truetype');
+}
+
+.hudLogoText {
+  position: absolute;
+  color: white;
+  transform: translate(60%, 180%);
+  font-family: 'chicken';
+  font-size: 30px;
+  z-index: 9999;
+}

@@ -69,7 +69,7 @@ export default function Movement() {
         enabledRotations={[false, false, false]}
       >
         <CapsuleCollider args={[1, 0.5]} />
-        {/* <Player position={[[15, 12.114732519462178, 13.81515247860525]]} /> */}
+        <Player position={[15, 10.114732519462178, 13.81515247860525]} />
       </RigidBody>
 
       <PointerLockControls />

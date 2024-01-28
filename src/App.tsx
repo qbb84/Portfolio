@@ -5,8 +5,12 @@ import './assets/Styles/App.css';
 import { KeyboardControls } from '@react-three/drei';
 import { Physics } from '@react-three/rapier';
 import Movement from './Components/Movement/Movement';
+import HudDisplay from './Components/Hud/HudDisplay';
+import { HudLoadContext } from './Components/Hud/HudLoadContext';
+import { useState } from 'react';
 
 function App() {
+  const [hudLoaded, setHudLoaded] = useState(HudLoadContext);
   return (
     <KeyboardControls
       map={[
@@ -18,6 +22,9 @@ function App() {
       ]}
     >
       <>
+        {/* <HudLoadContext.Provider value={{ hudLoaded, setHudLoaded }}> */}
+        <HudDisplay />
+        {/* </HudLoadContext.Provider> */}
         <Canvas
           flat
           gl={{ antialias: false }}

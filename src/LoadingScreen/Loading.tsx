@@ -1,11 +1,13 @@
 import { CameraShake, Float, Html, useProgress } from '@react-three/drei';
 import { CuboidCollider, Physics, RigidBody } from '@react-three/rapier';
-import { Suspense, useEffect, useState } from 'react';
+import { Suspense, useContext, useEffect, useState } from 'react';
 import { Room } from '../Components/ModelRender/Room';
 import Movement from '../Components/Movement/Movement';
 import Debug from '../Components/Test/Debug';
 import Intro from './Intro';
 import Player from '../Components/ModelRender/Player';
+import HudDisplay from '../Components/Hud/HudDisplay';
+import { HudLoadContext } from '../Components/Hud/HudLoadContext';
 
 function Load({ handlePlayClick }) {
   const { progress } = useProgress();
@@ -51,7 +53,9 @@ function Load({ handlePlayClick }) {
 export default function Loading() {
   const [showMainContent, setShowMainContent] = useState(false);
   const [isClicked, setIsClicked] = useState(false);
-  const [showBlink, setShowBlink] = useState(false); // Add this line
+  const [showBlink, setShowBlink] = useState(false);
+
+  const { hudLoaded, setHudLoaded } = useContext(HudLoadContext); // Add this line
 
   useEffect(() => {
     const blinkTimeout = setTimeout(() => {
@@ -95,7 +99,7 @@ export default function Loading() {
       {showMainContent && (
         <>
           <Intro />
-
+          /* Playstate */
           <Physics gravity={[0, -20, 0]} debug={false}>
             {/* <Lighting /> */}
 
@@ -105,8 +109,8 @@ export default function Loading() {
             </RigidBody>
             {/* <CuboidCollider args={[1000, 5, 1000]} /> */}
           </Physics>
-
           <Debug />
+          /* */
         </>
       )}
     </Suspense>
