@@ -55,7 +55,7 @@ export default function Loading() {
   const [isClicked, setIsClicked] = useState(false);
   const [showBlink, setShowBlink] = useState(false);
 
-  const { hudLoaded, setHudLoaded } = useContext(HudLoadContext); // Add this line
+  const { setHudLoaded } = useContext(HudLoadContext); // Add this line
 
   useEffect(() => {
     const blinkTimeout = setTimeout(() => {
@@ -67,16 +67,17 @@ export default function Loading() {
   useEffect(() => {
     const timeoutId = setTimeout(() => {
       setShowMainContent(true);
+      setHudLoaded(true);
     }, 30100);
 
     return () => {
       clearTimeout(timeoutId);
     };
-  }, []);
+  }, [setHudLoaded, setShowMainContent]);
 
   const handlePlayClick = () => {
     setIsClicked(true);
-
+    setHudLoaded(true);
     setTimeout(() => {
       setShowMainContent(true);
     }, 1100);
