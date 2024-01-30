@@ -22,9 +22,7 @@ function App() {
       ]}
     >
       <>
-        {/* <HudLoadContext.Provider value={{ hudLoaded, setHudLoaded }}> */}
         <HudDisplay />
-        {/* </HudLoadContext.Provider> */}
         <Canvas
           flat
           gl={{ antialias: false }}

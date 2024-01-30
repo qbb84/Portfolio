@@ -1,13 +1,12 @@
 import { CameraShake, Float, Html, useProgress } from '@react-three/drei';
-import { CuboidCollider, Physics, RigidBody } from '@react-three/rapier';
+import { Physics, RigidBody } from '@react-three/rapier';
 import { Suspense, useContext, useEffect, useState } from 'react';
 import { Room } from '../Components/ModelRender/Room';
 import Movement from '../Components/Movement/Movement';
 import Debug from '../Components/Test/Debug';
 import Intro from './Intro';
-import Player from '../Components/ModelRender/Player';
-import HudDisplay from '../Components/Hud/HudDisplay';
 import { HudLoadContext } from '../Components/Hud/HudLoadContext';
+import HudDisplay from '../Components/Hud/HudDisplay';
 
 function Load({ handlePlayClick }) {
   const { progress } = useProgress();
@@ -55,7 +54,7 @@ export default function Loading() {
   const [isClicked, setIsClicked] = useState(false);
   const [showBlink, setShowBlink] = useState(false);
 
-  const { setHudLoaded } = useContext(HudLoadContext); // Add this line
+  const { setHudLoaded } = useContext(HudLoadContext);
 
   useEffect(() => {
     const blinkTimeout = setTimeout(() => {
