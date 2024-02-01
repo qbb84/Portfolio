@@ -28,6 +28,30 @@
   right: 50%;
 }
 
+.animateEntryTop {
+  animation: zoomIn 2s 1.5s;
+}
+
+.animateEntryQuestion {
+  animation: zoomIn 2s 1.7s;
+}
+
+.animateEntryProfile {
+  animation: zoomIn 2s 2.3s;
+}
+
+.animateEntryContact {
+  animation: zoomIn 2s 2.1s;
+}
+
+.animateEntrySettings {
+  animation: zoomIn 2s 1.9s;
+}
+
+.animateLeave {
+  animation: bounceOut 3s;
+}
+
 .top-line {
   position: absolute;
 }

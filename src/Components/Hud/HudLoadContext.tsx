@@ -1,7 +1,17 @@
 import { Hud } from '@react-three/drei';
-import React from 'react';
+import React, { useState } from 'react';
 
 export const HudLoadContext = React.createContext({
-  hudLoaded: true,
+  hudLoaded: false,
   setHudLoaded: () => {},
 });
+
+export const HudLoadProvider = ({ children }) => {
+  const [hudLoaded, setHudLoaded] = useState(false);
+
+  return (
+    <HudLoadContext.Provider value={{ hudLoaded, setHudLoaded }}>
+      {children}
+    </HudLoadContext.Provider>
+  );
+};

@@ -6,7 +6,10 @@ import { KeyboardControls } from '@react-three/drei';
 import { Physics } from '@react-three/rapier';
 import Movement from './Components/Movement/Movement';
 import HudDisplay from './Components/Hud/HudDisplay';
-import { HudLoadContext } from './Components/Hud/HudLoadContext';
+import {
+  HudLoadContext,
+  HudLoadProvider,
+} from './Components/Hud/HudLoadContext';
 import { useState } from 'react';
 
 function App() {
@@ -22,20 +25,22 @@ function App() {
       ]}
     >
       <>
-        <HudDisplay />
-        <Canvas
-          flat
-          gl={{ antialias: false }}
-          camera={{
-            fov: 90,
-            position: [
-              18.779424788883275, 12.114732519462178, 15.81515247860525,
-            ],
-          }}
-        >
-          <Loading />
-          <OrbitControl />
-        </Canvas>
+        <HudLoadProvider>
+          <HudDisplay />
+          <Canvas
+            flat
+            gl={{ antialias: false }}
+            camera={{
+              fov: 90,
+              position: [
+                18.779424788883275, 12.114732519462178, 15.81515247860525,
+              ],
+            }}
+          >
+            <Loading />
+            <OrbitControl />
+          </Canvas>
+        </HudLoadProvider>
       </>
     </KeyboardControls>
   );
