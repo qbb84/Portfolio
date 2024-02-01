@@ -77,11 +77,6 @@ body,
   animation: bounceIn 1s;
 }
 
-@font-face {
-  font-family: 'titan';
-  src: url('./fonts/TitilliumWeb-Light.ttf') format('truetype');
-}
-
 @keyframes bounceIn {
   0% {
     transform: scale(0.1);

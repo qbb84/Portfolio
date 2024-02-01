@@ -1,0 +1,250 @@
+@font-face {
+  font-family: 'chicken';
+  src: url('/fonts/TitilliumWeb-Bold.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'bubble';
+  src: url('/fonts/fairy.ttf') format('truetype');
+}
+
+.hudLogoText {
+  position: absolute;
+  color: gray;
+  left: 50%;
+  top: 0px;
+  transform: translate(-50%, 250%);
+  font-family: 'bubble';
+  font-size: 30px;
+  z-index: 99999;
+  background-color: linear-gradient(to bottom, #ffffff, #e6e6e6);
+  visibility: hidden;
+}
+
+.topBar {
+  z-index: 9999;
+  position: absolute;
+  top: 0%;
+  right: 50%;
+}
+
+.animateEntryTop {
+  animation: zoomIn 2s 1.5s;
+}
+
+.animateEntryQuestion {
+  animation: zoomIn 2s 1.7s;
+}
+
+.animateEntryProfile {
+  animation: zoomIn 2s 2.3s;
+}
+
+.animateEntryContact {
+  animation: zoomIn 2s 2.1s;
+}
+
+.animateEntrySettings {
+  animation: zoomIn 2s 1.9s;
+}
+
+.animateLeave {
+  animation: bounceOut 3s;
+}
+
+.top-line {
+  position: absolute;
+}
+
+.center-oval {
+  position: absolute;
+  border-radius: 0% 0% 25% 25%;
+  background: linear-gradient(to bottom, #ffffff, #e6e6e6);
+  border-left: 4px solid whitesmoke;
+  border-right: 4px solid whitesmoke;
+  border-bottom: 4px solid whitesmoke;
+  width: 200px;
+  height: 100px;
+  margin-left: -100px;
+
+  box-shadow: 0px 30px 15px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(221, 214, 214, 0.1);
+  border-bottom: 5px solid rgb(211, 202, 202);
+}
+
+.center-time {
+  position: absolute;
+  color: #666666 !important;
+  right: 50%;
+  width: 50px;
+  font-family: 'chicken';
+  font-size: 50px;
+  margin-right: 10px;
+  transform: translateY(-50%);
+}
+
+.questionMark {
+  position: absolute;
+  background: linear-gradient(to bottom, #ffffff, #e6e6e6);
+  width: 100px;
+  height: 100px;
+  bottom: 50px;
+  z-index: 9999;
+  left: 15px;
+  border-radius: 20px;
+  box-shadow: 0px 30px 15px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(221, 214, 214, 0.1);
+  border-bottom: 5px solid rgb(211, 202, 202);
+}
+
+.questionButton {
+  position: absolute;
+  background-color: linear-gradient(to bottom, #ffffff, #e6e6e6);
+  width: 90px;
+  height: 90px;
+  bottom: 5px;
+  right: 5px;
+  border-radius: 70px;
+  border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.settings {
+  position: absolute;
+  background: linear-gradient(to bottom, #ffffff, #e6e6e6);
+  width: 60px;
+  height: 60px;
+  bottom: 70px;
+  z-index: 9999;
+  left: 150px;
+  border-radius: 15px;
+
+  box-shadow: 0px 30px 15px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(221, 214, 214, 0.1);
+  border-bottom: 5px solid rgb(211, 202, 202);
+}
+
+.settingsButton {
+  position: absolute;
+  background-color: linear-gradient(to bottom, #ffffff, #e6e6e6);
+  width: 50px;
+  height: 50px;
+  bottom: 5px;
+  right: 5px;
+  border-radius: 30px;
+  border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.contact {
+  position: absolute;
+  background: linear-gradient(to bottom, #ffffff, #e6e6e6);
+  width: 60px;
+  height: 60px;
+  bottom: 70px;
+  z-index: 9999;
+  left: 225px;
+  border-radius: 15px;
+
+  box-shadow: 0px 30px 15px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(221, 214, 214, 0.1);
+  border-bottom: 5px solid rgb(211, 202, 202);
+}
+
+.contactButton {
+  position: absolute;
+  background-color: linear-gradient(to bottom, #ffffff, #e6e6e6);
+  width: 50px;
+  height: 50px;
+  bottom: 5px;
+  right: 5px;
+  border-radius: 30px;
+  border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.profile {
+  position: absolute;
+  background: linear-gradient(to bottom, #ffffff, #e6e6e6);
+  width: 60px;
+  height: 60px;
+  bottom: 70px;
+  z-index: 9999;
+  left: 300px;
+  border-radius: 15px;
+
+  box-shadow: 0px 30px 15px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(221, 214, 214, 0.1);
+  border-bottom: 5px solid rgb(211, 202, 202);
+}
+
+.profileButton {
+  position: absolute;
+  background-color: linear-gradient(to bottom, #ffffff, #e6e6e6);
+  width: 50px;
+  height: 50px;
+  bottom: 5px;
+  right: 5px;
+  border-radius: 30px;
+  border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.setting-img {
+  scale: 0.23;
+  border-radius: 100%;
+  animation: shakeX 1s 1s;
+  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  transform: perspective(500px) rotateY(20deg);
+}
+
+.setting-img:hover,
+.contact-img:hover,
+.profile-img:hover,
+.question-img:hover {
+  animation: ld-jingle 2s;
+}
+
+.question-img {
+  scale: 0.5;
+  background-color: linear-gradient(to bottom, #ffffff, #e6e6e6);
+  border-radius: 100%;
+  animation: shakeX 1s 1s;
+  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  transform: perspective(500px) rotateY(20deg);
+}
+
+.contact-img {
+  scale: 0.23;
+  border-radius: 100%;
+  animation: shakeX 1s 1s;
+  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  transform: perspective(500px) rotateY(20deg);
+}
+
+.profile-img {
+  scale: 0.23;
+  border-radius: 100%;
+  animation: shakeX 1s 1s;
+  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  transform: perspective(500px) rotateY(20deg);
+}
+
+.questionMark:hover,
+.settings:hover,
+.profile:hover,
+.contact:hover {
+  transform: scale(0.99);
+}
