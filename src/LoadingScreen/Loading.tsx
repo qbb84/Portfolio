@@ -66,15 +66,17 @@ export default function Loading() {
   }, []);
 
   useEffect(() => {
-    const timeoutId = setTimeout(() => {
-      setShowIntro(true);
-      setHudLoaded(false);
-    }, 30100);
+    if (!isClicked) {
+      const timeoutId = setTimeout(() => {
+        setShowIntro(true);
+        setHudLoaded(false);
+      }, 30100);
 
-    return () => {
-      clearTimeout(timeoutId);
-    };
-  }, [setHudLoaded, setShowIntro]);
+      return () => {
+        clearTimeout(timeoutId);
+      };
+    }
+  }, [setHudLoaded, setShowIntro, isClicked]);
 
   const handlePlayClick = () => {
     setIsClicked(true);
@@ -104,12 +106,7 @@ export default function Loading() {
           <Intro />
         </>
       )}
-      {showMainContent && (
-        <>
-          /* Playstate */
-          <Movement />
-        </>
-      )}
+      {showMainContent && <>/* Playstate */</>}
     </Suspense>
   );
 }

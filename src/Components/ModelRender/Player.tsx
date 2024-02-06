@@ -1,6 +1,6 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { useGLTF, useAnimations } from '@react-three/drei';
+import { useAnimations, useGLTF } from '@react-three/drei';
 import { useFrame, useThree } from '@react-three/fiber';
+import { useEffect, useRef, useState } from 'react';
 import * as THREE from 'three';
 
 export default function Player(props) {

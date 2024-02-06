@@ -10,6 +10,7 @@ import { GLTF } from 'three-stdlib';
 import { VisibilityContext } from './RoomVisibility';
 import { RigidBody } from '@react-three/rapier';
 import { random } from 'maath';
+import DissolveMaterial from '../../Utils/DissolveMaterial';
 
 type GLTFResult = GLTF & {
   nodes: {
@@ -170,6 +171,9 @@ export function Room(props: JSX.IntrinsicElements['group']) {
     }
   });
 
+  const [visibleItem, setVisibleItem] = useState(false);
+  const onFadeOut = () => setVisibleItem(false);
+
   return (
     <>
       <group {...props} dispose={null} ref={roomRef}>
@@ -177,14 +181,21 @@ export function Room(props: JSX.IntrinsicElements['group']) {
           <mesh
             name="Bed_Pillows"
             geometry={nodes.Box002_Baked.geometry}
-            material={materials.Objs2_Baked}
+            // material={materials.Objs2_Baked}
             position={[-6.907, 2.052, -0.094]}
             rotation={[-0.898, 0, 0]}
+            material={materials.Objs2_Baked}
             userData={{ name: 'Bed_Pillows' }}
             onPointerOver={() => setIsPointerOver(true)}
             onPointerOut={() => setIsPointerOver(false)}
           >
             {isPointerOver && <Outlines thickness={0.05} color={getColor} />}
+            <DissolveMaterial
+              baseMaterial={materials.Objs2_Baked}
+              visible={true}
+              onFadeOut={onFadeOut}
+              color="#0082b2"
+            />
           </mesh>
 
           <mesh
@@ -193,35 +204,71 @@ export function Room(props: JSX.IntrinsicElements['group']) {
             material={materials.Objs2_Baked}
             position={[-7.062, 0.044, -4.368]}
             userData={{ name: 'Bed_Liner' }}
-          />
+          >
+            <DissolveMaterial
+              baseMaterial={materials.Objs2_Baked}
+              visible={true}
+              onFadeOut={onFadeOut}
+              color="#0082b2"
+            />
+          </mesh>
+
           <mesh
             name="Bed_Backboard"
             geometry={nodes.Cube039_Baked.geometry}
             material={materials.Objs2_Baked}
             position={[-7.062, 2.409, 0.602]}
             userData={{ name: 'Bed_Backboard' }}
-          />
+          >
+            <DissolveMaterial
+              baseMaterial={materials.Objs2_Baked}
+              visible={true}
+              onFadeOut={onFadeOut}
+              color="#0082b2"
+            />
+          </mesh>
           <mesh
             name="Bed_Mattress"
             geometry={nodes.Cube040_Baked.geometry}
             material={materials.Objs2_Baked}
             position={[-7.062, 0.798, -4.367]}
             userData={{ name: 'Bed_Mattress' }}
-          />
+          >
+            <DissolveMaterial
+              baseMaterial={materials.Objs2_Baked}
+              visible={true}
+              onFadeOut={onFadeOut}
+              color="#0082b2"
+            />
+          </mesh>
           <mesh
             name="Bed_Legs"
             geometry={nodes.Cube059_Baked.geometry}
             material={materials.Objs2_Baked}
             position={[-7.062, -0.473, -8.646]}
             userData={{ name: 'Bed_Legs' }}
-          />
+          >
+            <DissolveMaterial
+              baseMaterial={materials.Objs2_Baked}
+              visible={true}
+              onFadeOut={onFadeOut}
+              color="#0082b2"
+            />
+          </mesh>
           <mesh
             name="Bed_Quilt"
             geometry={nodes.Plane002_Baked.geometry}
             material={materials.Objs2_Baked}
             position={[-7.104, 1.044, -5.177]}
             userData={{ name: 'Bed_Quilt' }}
-          />
+          >
+            <DissolveMaterial
+              baseMaterial={materials.Objs2_Baked}
+              visible={true}
+              onFadeOut={onFadeOut}
+              color="#0082b2"
+            />
+          </mesh>
         </group>
         <group ref={everythingRef}>
           <mesh
@@ -231,7 +278,14 @@ export function Room(props: JSX.IntrinsicElements['group']) {
             position={[5.691, 2.122, -5.58]}
             rotation={[Math.PI / 2, 0, -1.643]}
             userData={{ name: 'Bishop.001_Baked' }}
-          />
+          >
+            <DissolveMaterial
+              baseMaterial={materials.Objs3_Baked}
+              visible={true}
+              onFadeOut={onFadeOut}
+              color="#0082b2"
+            />
+          </mesh>
           <mesh
             name="Bishop002__Baked"
             geometry={nodes.Bishop002__Baked.geometry}
@@ -239,7 +293,14 @@ export function Room(props: JSX.IntrinsicElements['group']) {
             position={[5.698, 2.122, -6.369]}
             rotation={[Math.PI / 2, 0, -1.643]}
             userData={{ name: 'Bishop.002__Baked' }}
-          />
+          >
+            <DissolveMaterial
+              baseMaterial={materials.Objs3_Baked}
+              visible={true}
+              onFadeOut={onFadeOut}
+              color="#0082b2"
+            />
+          </mesh>
           <mesh
             name="Bishop003__Baked"
             geometry={nodes.Bishop003__Baked.geometry}
@@ -247,7 +308,14 @@ export function Room(props: JSX.IntrinsicElements['group']) {
             position={[7.219, 2.122, -6.374]}
             rotation={[Math.PI / 2, 0, -1.643]}
             userData={{ name: 'Bishop.003__Baked' }}
-          />
+          >
+            <DissolveMaterial
+              baseMaterial={materials.Objs3_Baked}
+              visible={true}
+              onFadeOut={onFadeOut}
+              color="#0082b2"
+            />
+          </mesh>
           <mesh
             name="Bishop004__Baked"
             geometry={nodes.Bishop004__Baked.geometry}
@@ -255,14 +323,28 @@ export function Room(props: JSX.IntrinsicElements['group']) {
             position={[7.219, 2.123, -5.593]}
             rotation={[Math.PI / 2, 0, -1.643]}
             userData={{ name: 'Bishop.004__Baked' }}
-          />
+          >
+            <DissolveMaterial
+              baseMaterial={materials.Objs3_Baked}
+              visible={true}
+              onFadeOut={onFadeOut}
+              color="#0082b2"
+            />
+          </mesh>
           <mesh
             name="Cube001_Baked"
             geometry={nodes.Cube001_Baked.geometry}
             material={materials.Objs3_Baked}
             position={[8.292, 1.991, -6.777]}
             userData={{ name: 'Cube.001_Baked' }}
-          />
+          >
+            <DissolveMaterial
+              baseMaterial={materials.Objs3_Baked}
+              visible={true}
+              onFadeOut={onFadeOut}
+              color="#0082b2"
+            />
+          </mesh>
           <mesh
             name="Cube013_Baked"
             geometry={nodes.Cube013_Baked.geometry}
@@ -270,7 +352,14 @@ export function Room(props: JSX.IntrinsicElements['group']) {
             position={[6.446, 1.925, -5.985]}
             scale={1.043}
             userData={{ name: 'Cube.013_Baked' }}
-          />
+          >
+            <DissolveMaterial
+              baseMaterial={materials.Objs3_Baked}
+              visible={true}
+              onFadeOut={onFadeOut}
+              color="#0082b2"
+            />
+          </mesh>
           <mesh
             name="Cube028_Baked"
             geometry={nodes.Cube028_Baked.geometry}
@@ -278,7 +367,14 @@ export function Room(props: JSX.IntrinsicElements['group']) {
             position={[8.292, 2.173, -6.777]}
             rotation={[Math.PI, 0, Math.PI]}
             userData={{ name: 'Cube.028_Baked' }}
-          />
+          >
+            <DissolveMaterial
+              baseMaterial={materials.Objs3_Baked}
+              visible={true}
+              onFadeOut={onFadeOut}
+              color="#0082b2"
+            />
+          </mesh>
           <mesh
             name="Cube033_Baked"
             geometry={nodes.Cube033_Baked.geometry}
@@ -286,7 +382,14 @@ export function Room(props: JSX.IntrinsicElements['group']) {
             position={[8.292, 2.358, -6.777]}
             rotation={[-Math.PI, 1.497, -Math.PI]}
             userData={{ name: 'Cube.033_Baked' }}
-          />
+          >
+            <DissolveMaterial
+              baseMaterial={materials.Objs3_Baked}
+              visible={true}
+              onFadeOut={onFadeOut}
+              color="#0082b2"
+            />
+          </mesh>
           <mesh
             name="Cube041_Baked"
             geometry={nodes.Cube041_Baked.geometry}
@@ -294,7 +397,14 @@ export function Room(props: JSX.IntrinsicElements['group']) {
             position={[8.257, 2.18, -6.353]}
             rotation={[-1.574, -0.016, 0.037]}
             userData={{ name: 'Cube.041_Baked' }}
-          />
+          >
+            <DissolveMaterial
+              baseMaterial={materials.Objs3_Baked}
+              visible={true}
+              onFadeOut={onFadeOut}
+              color="#0082b2"
+            />
+          </mesh>
           <mesh
             name="Cube042_Baked"
             geometry={nodes.Cube042_Baked.geometry}
@@ -302,7 +412,14 @@ export function Room(props: JSX.IntrinsicElements['group']) {
             position={[8.434, 2.735, -6.706]}
             rotation={[-Math.PI, 1.565, -Math.PI]}
             userData={{ name: 'Cube.042_Baked' }}
-          />
+          >
+            <DissolveMaterial
+              baseMaterial={materials.Objs3_Baked}
+              visible={true}
+              onFadeOut={onFadeOut}
+              color="#0082b2"
+            />
+          </mesh>
           <mesh
             name="Cube043_Baked"
             geometry={nodes.Cube043_Baked.geometry}
@@ -310,7 +427,14 @@ export function Room(props: JSX.IntrinsicElements['group']) {
             position={[8.434, 2.92, -6.706]}
             rotation={[0, -1.204, 0]}
             userData={{ name: 'Cube.043_Baked' }}
-          />
+          >
+            <DissolveMaterial
+              baseMaterial={materials.Objs3_Baked}
+              visible={true}
+              onFadeOut={true}
+              color="#0082b2"
+            />
+          </mesh>
           <mesh
             name="Cube044_Baked"
             geometry={nodes.Cube044_Baked.geometry}
@@ -318,7 +442,14 @@ export function Room(props: JSX.IntrinsicElements['group']) {
             position={[8.289, 2.2, -6.017]}
             rotation={[-Math.PI / 2, -0.005, -Math.PI]}
             userData={{ name: 'Cube.044_Baked' }}
-          />
+          >
+            <DissolveMaterial
+              baseMaterial={materials.Objs3_Baked}
+              visible={true}
+              onFadeOut={onFadeOut}
+              color="#0082b2"
+            />
+          </mesh>
           <mesh
             name="Cube045_Baked"
             geometry={nodes.Cube045_Baked.geometry}
@@ -326,7 +457,14 @@ export function Room(props: JSX.IntrinsicElements['group']) {
             position={[8.396, 2.714, -5.542]}
             rotation={[0, -1.569, 0]}
             userData={{ name: 'Cube.045_Baked' }}
-          />
+          >
+            <DissolveMaterial
+              baseMaterial={materials.Objs3_Baked}
+              visible={true}
+              onFadeOut={onFadeOut}
+              color="#0082b2"
+            />
+          </mesh>
           <mesh
             name="Cube046_Baked"
             geometry={nodes.Cube046_Baked.geometry}
@@ -334,7 +472,14 @@ export function Room(props: JSX.IntrinsicElements['group']) {
             position={[8.275, 2.197, -5.381]}
             rotation={[1.571, -0.005, -0.001]}
             userData={{ name: 'Cube.046_Baked' }}
-          />
+          >
+            <DissolveMaterial
+              baseMaterial={materials.Objs3_Baked}
+              visible={true}
+              onFadeOut={onFadeOut}
+              color="#0082b2"
+            />
+          </mesh>
           <mesh
             name="Cube047_Baked"
             geometry={nodes.Cube047_Baked.geometry}
@@ -342,7 +487,14 @@ export function Room(props: JSX.IntrinsicElements['group']) {
             position={[8.434, 3.102, -6.706]}
             rotation={[Math.PI, -1.306, Math.PI]}
             userData={{ name: 'Cube.047_Baked' }}
-          />
+          >
+            <DissolveMaterial
+              baseMaterial={materials.Objs3_Baked}
+              visible={true}
+              onFadeOut={onFadeOut}
+              color="#0082b2"
+            />
+          </mesh>
           <mesh
             name="Cube048_Baked"
             geometry={nodes.Cube048_Baked.geometry}
@@ -350,7 +502,14 @@ export function Room(props: JSX.IntrinsicElements['group']) {
             position={[8.35, 2.902, -5.969]}
             rotation={[-1.278, -0.005, -Math.PI]}
             userData={{ name: 'Cube.048_Baked' }}
-          />
+          >
+            <DissolveMaterial
+              baseMaterial={materials.Objs3_Baked}
+              visible={true}
+              onFadeOut={onFadeOut}
+              color="#0082b2"
+            />
+          </mesh>
           <mesh
             name="Cube049_Baked"
             geometry={nodes.Cube049_Baked.geometry}
@@ -358,7 +517,14 @@ export function Room(props: JSX.IntrinsicElements['group']) {
             position={[8.359, 3.406, -5.689]}
             rotation={[Math.PI, -0.029, Math.PI]}
             userData={{ name: 'Cube.049_Baked' }}
-          />
+          >
+            <DissolveMaterial
+              baseMaterial={materials.Objs3_Baked}
+              visible={true}
+              onFadeOut={onFadeOut}
+              color="#0082b2"
+            />
+          </mesh>
           <mesh
             name="Cube060_Baked"
             geometry={nodes.Cube060_Baked.geometry}
@@ -366,7 +532,14 @@ export function Room(props: JSX.IntrinsicElements['group']) {
             position={[8.304, 2.2, -5.823]}
             rotation={[-Math.PI / 2, -0.005, -Math.PI]}
             userData={{ name: 'Cube.060_Baked' }}
-          />
+          >
+            <DissolveMaterial
+              baseMaterial={materials.Objs3_Baked}
+              visible={true}
+              onFadeOut={onFadeOut}
+              color="#0082b2"
+            />
+          </mesh>
           <mesh
             name="Cube061_Baked"
             geometry={nodes.Cube061_Baked.geometry}
@@ -374,7 +547,14 @@ export function Room(props: JSX.IntrinsicElements['group']) {
             position={[8.304, 2.2, -5.629]}
             rotation={[-Math.PI / 2, -0.005, -Math.PI]}
             userData={{ name: 'Cube.061_Baked' }}
-          />
+          >
+            <DissolveMaterial
+              baseMaterial={materials.Objs3_Baked}
+              visible={true}
+              onFadeOut={onFadeOut}
+              color="#0082b2"
+            />
+          </mesh>
           <mesh
             name="Cube062_Baked"
             geometry={nodes.Cube062_Baked.geometry}
@@ -382,7 +562,14 @@ export function Room(props: JSX.IntrinsicElements['group']) {
             position={[8.357, 2.865, -5.549]}
             rotation={[0, -1.569, 0]}
             userData={{ name: 'Cube.062_Baked' }}
-          />
+          >
+            <DissolveMaterial
+              baseMaterial={materials.Objs3_Baked}
+              visible={true}
+              onFadeOut={onFadeOut}
+              color="#0082b2"
+            />
+          </mesh>
           <mesh
             name="Cube063_Baked"
             geometry={nodes.Cube063_Baked.geometry}
@@ -390,7 +577,14 @@ export function Room(props: JSX.IntrinsicElements['group']) {
             position={[8.329, 3.038, -5.549]}
             rotation={[0, -1.569, 0]}
             userData={{ name: 'Cube.063_Baked' }}
-          />
+          >
+            <DissolveMaterial
+              baseMaterial={materials.Objs3_Baked}
+              visible={true}
+              onFadeOut={onFadeOut}
+              color="#0082b2"
+            />
+          </mesh>
           <mesh
             name="King001__Baked"
             geometry={nodes.King001__Baked.geometry}
@@ -398,7 +592,14 @@ export function Room(props: JSX.IntrinsicElements['group']) {
             position={[7.219, 2.185, -5.85]}
             rotation={[Math.PI / 2, 0, -1.643]}
             userData={{ name: 'King.001__Baked' }}
-          />
+          >
+            <DissolveMaterial
+              baseMaterial={materials.Objs3_Baked}
+              visible={true}
+              onFadeOut={onFadeOut}
+              color="#0082b2"
+            />
+          </mesh>
           <mesh
             name="King_Baked_Baked"
             geometry={nodes.King_Baked_Baked.geometry}
@@ -406,7 +607,14 @@ export function Room(props: JSX.IntrinsicElements['group']) {
             position={[5.698, 2.183, -5.841]}
             rotation={[Math.PI / 2, 0, -1.643]}
             userData={{ name: 'King_Baked_Baked' }}
-          />
+          >
+            <DissolveMaterial
+              baseMaterial={materials.Objs3_Baked}
+              visible={true}
+              onFadeOut={onFadeOut}
+              color="#0082b2"
+            />
+          </mesh>
           <mesh
             name="Knight001__Baked"
             geometry={nodes.Knight001__Baked.geometry}
@@ -414,7 +622,14 @@ export function Room(props: JSX.IntrinsicElements['group']) {
             position={[5.693, 2.096, -5.332]}
             rotation={[Math.PI / 2, 0, -1.643]}
             userData={{ name: 'Knight.001__Baked' }}
-          />
+          >
+            <DissolveMaterial
+              baseMaterial={materials.Objs3_Baked}
+              visible={true}
+              onFadeOut={onFadeOut}
+              color="#0082b2"
+            />
+          </mesh>
           <mesh
             name="Knight002__Baked"
             geometry={nodes.Knight002__Baked.geometry}
@@ -422,7 +637,14 @@ export function Room(props: JSX.IntrinsicElements['group']) {
             position={[5.685, 2.096, -6.639]}
             rotation={[Math.PI / 2, 0, -1.643]}
             userData={{ name: 'Knight.002__Baked' }}
-          />
+          >
+            <DissolveMaterial
+              baseMaterial={materials.Objs3_Baked}
+              visible={true}
+              onFadeOut={onFadeOut}
+              color="#0082b2"
+            />
+          </mesh>
           <mesh
             name="Knight003__Baked"
             geometry={nodes.Knight003__Baked.geometry}
@@ -430,7 +652,14 @@ export function Room(props: JSX.IntrinsicElements['group']) {
             position={[7.225, 2.098, -6.625]}
             rotation={[Math.PI / 2, 0, Math.PI / 2]}
             userData={{ name: 'Knight.003__Baked' }}
-          />
+          >
+            <DissolveMaterial
+              baseMaterial={materials.Objs3_Baked}
+              visible={true}
+              onFadeOut={onFadeOut}
+              color="#0082b2"
+            />
+          </mesh>
           <mesh
             name="Knight004__Baked"
             geometry={nodes.Knight004__Baked.geometry}
@@ -438,7 +667,14 @@ export function Room(props: JSX.IntrinsicElements['group']) {
             position={[7.241, 2.098, -5.326]}
             rotation={[Math.PI / 2, 0, Math.PI / 2]}
             userData={{ name: 'Knight.004__Baked' }}
-          />
+          >
+            <DissolveMaterial
+              baseMaterial={materials.Objs3_Baked}
+              visible={true}
+              onFadeOut={onFadeOut}
+              color="#0082b2"
+            />
+          </mesh>
           <mesh
             name="Pawn001__Baked"
             geometry={nodes.Pawn001__Baked.geometry}
@@ -446,7 +682,14 @@ export function Room(props: JSX.IntrinsicElements['group']) {
             position={[6.983, 2.054, -5.981]}
             rotation={[Math.PI / 2, 0, -1.588]}
             userData={{ name: 'Pawn.001__Baked' }}
-          />
+          >
+            <DissolveMaterial
+              baseMaterial={materials.Objs3_Baked}
+              visible={true}
+              onFadeOut={onFadeOut}
+              color="#0082b2"
+            />
+          </mesh>
           <mesh
             name="Pawn006__Baked"
             geometry={nodes.Pawn006__Baked.geometry}
@@ -454,7 +697,14 @@ export function Room(props: JSX.IntrinsicElements['group']) {
             position={[5.911, 2.065, -5.981]}
             rotation={[Math.PI / 2, 0, -1.588]}
             userData={{ name: 'Pawn.006__Baked' }}
-          />
+          >
+            <DissolveMaterial
+              baseMaterial={materials.Objs3_Baked}
+              visible={true}
+              onFadeOut={onFadeOut}
+              color="#0082b2"
+            />
+          </mesh>
           <mesh
             name="Queen001__Baked"
             geometry={nodes.Queen001__Baked.geometry}
@@ -462,7 +712,14 @@ export function Room(props: JSX.IntrinsicElements['group']) {
             position={[7.219, 2.201, -6.111]}
             rotation={[Math.PI / 2, 0, 0]}
             userData={{ name: 'Queen.001__Baked' }}
-          />
+          >
+            <DissolveMaterial
+              baseMaterial={materials.Objs3_Baked}
+              visible={true}
+              onFadeOut={onFadeOut}
+              color="#0082b2"
+            />
+          </mesh>
           <mesh
             name="Queen__Baked"
             geometry={nodes.Queen__Baked.geometry}
@@ -470,7 +727,14 @@ export function Room(props: JSX.IntrinsicElements['group']) {
             position={[5.705, 2.198, -6.124]}
             rotation={[Math.PI / 2, 0, 0]}
             userData={{ name: 'Queen__Baked' }}
-          />
+          >
+            <DissolveMaterial
+              baseMaterial={materials.Objs3_Baked}
+              visible={true}
+              onFadeOut={onFadeOut}
+              color="#0082b2"
+            />
+          </mesh>
           <mesh
             name="Rook003__Baked"
             geometry={nodes.Rook003__Baked.geometry}
@@ -478,7 +742,14 @@ export function Room(props: JSX.IntrinsicElements['group']) {
             position={[5.704, 2.17, -5.067]}
             rotation={[Math.PI / 2, 0, -1.643]}
             userData={{ name: 'Rook.003__Baked' }}
-          />
+          >
+            <DissolveMaterial
+              baseMaterial={materials.Objs3_Baked}
+              visible={true}
+              onFadeOut={onFadeOut}
+              color="#0082b2"
+            />
+          </mesh>
           <mesh
             name="Rook004__Baked"
             geometry={nodes.Rook004__Baked.geometry}
@@ -486,7 +757,14 @@ export function Room(props: JSX.IntrinsicElements['group']) {
             position={[7.197, 2.171, -6.873]}
             rotation={[Math.PI / 2, 0, -1.643]}
             userData={{ name: 'Rook.004__Baked' }}
-          />
+          >
+            <DissolveMaterial
+              baseMaterial={materials.Objs3_Baked}
+              visible={true}
+              onFadeOut={onFadeOut}
+              color="#0082b2"
+            />
+          </mesh>
           <mesh
             name="Rook005__Baked"
             geometry={nodes.Rook005__Baked.geometry}
@@ -494,7 +772,14 @@ export function Room(props: JSX.IntrinsicElements['group']) {
             position={[7.238, 2.171, -5.074]}
             rotation={[Math.PI / 2, 0, -1.643]}
             userData={{ name: 'Rook.005__Baked' }}
-          />
+          >
+            <DissolveMaterial
+              baseMaterial={materials.Objs3_Baked}
+              visible={true}
+              onFadeOut={onFadeOut}
+              color="#0082b2"
+            />
+          </mesh>
           <mesh
             name="Rook_Baked"
             geometry={nodes.Rook_Baked.geometry}
@@ -502,7 +787,14 @@ export function Room(props: JSX.IntrinsicElements['group']) {
             position={[5.693, 2.17, -6.9]}
             rotation={[Math.PI / 2, 0, -1.643]}
             userData={{ name: 'Rook_Baked' }}
-          />
+          >
+            <DissolveMaterial
+              baseMaterial={materials.Objs3_Baked}
+              visible={true}
+              onFadeOut={onFadeOut}
+              color="#0082b2"
+            />
+          </mesh>
           <mesh
             name="Torus001_Baked"
             geometry={nodes.Torus001_Baked.geometry}
@@ -510,7 +802,14 @@ export function Room(props: JSX.IntrinsicElements['group']) {
             position={[3.001, 6.817, 1.097]}
             rotation={[0, 0, -Math.PI / 2]}
             userData={{ name: 'Torus.001_Baked' }}
-          />
+          >
+            <DissolveMaterial
+              baseMaterial={materials.Objs1_Baked}
+              visible={true}
+              onFadeOut={onFadeOut}
+              color="#0082b2"
+            />
+          </mesh>
           <mesh
             name="Torus_Baked"
             geometry={nodes.Torus_Baked.geometry}
@@ -526,6 +825,19 @@ export function Room(props: JSX.IntrinsicElements['group']) {
               position={[2.037, 12.436, -13.746]}
               rotation={[0, -Math.PI / 2, 0]}
               userData={{ name: 'Cube.024_Baked' }}
+            >
+              <DissolveMaterial
+                baseMaterial={materials.Objs1_Baked}
+                visible={true}
+                onFadeOut={onFadeOut}
+                color="#0082b2"
+              />
+            </mesh>
+            <DissolveMaterial
+              baseMaterial={materials.Objs1_Baked}
+              visible={true}
+              onFadeOut={onFadeOut}
+              color="#0082b2"
             />
           </mesh>
           <mesh
@@ -535,7 +847,14 @@ export function Room(props: JSX.IntrinsicElements['group']) {
             position={[7.577, 4.293, -1.018]}
             rotation={[1.611, 0.002, 0.342]}
             userData={{ name: 'Circle.001_Baked' }}
-          />
+          >
+            <DissolveMaterial
+              baseMaterial={materials.Objs5_Baked}
+              visible={true}
+              onFadeOut={onFadeOut}
+              color="#0082b2"
+            />
+          </mesh>
           <mesh
             name="Circle003_Baked"
             geometry={nodes.Circle003_Baked.geometry}
@@ -543,7 +862,14 @@ export function Room(props: JSX.IntrinsicElements['group']) {
             position={[0.067, 0.023, -0.182]}
             rotation={[0, -0.014, 0]}
             userData={{ name: 'Circle.003_Baked' }}
-          />
+          >
+            <DissolveMaterial
+              baseMaterial={materials.Objs5_Baked}
+              visible={true}
+              onFadeOut={onFadeOut}
+              color="#0082b2"
+            />
+          </mesh>
           <mesh
             name="MainMonitor"
             geometry={nodes.Cube002_Baked.geometry}
@@ -557,6 +883,12 @@ export function Room(props: JSX.IntrinsicElements['group']) {
           >
             <Outlines thickness={0.05} color="white" opacity={getOpacity} />
             {isPointerOver && <Outlines thickness={0.05} color={getColor} />}
+            <DissolveMaterial
+              baseMaterial={materials.Objs5_Baked}
+              visible={true}
+              onFadeOut={onFadeOut}
+              color="#0082b2"
+            />
           </mesh>
           <mesh
             name="SecondMonitor"
@@ -566,7 +898,14 @@ export function Room(props: JSX.IntrinsicElements['group']) {
             rotation={[1.606, -0.059, -1.028]}
             scale={1.122}
             userData={{ name: 'SecondMonitor' }}
-          />
+          >
+            <DissolveMaterial
+              baseMaterial={materials.Objs5_Baked}
+              visible={true}
+              onFadeOut={onFadeOut}
+              color="#0082b2"
+            />
+          </mesh>
           <mesh
             name="Keyboard"
             geometry={nodes.Cube011_Baked.geometry}
@@ -575,7 +914,14 @@ export function Room(props: JSX.IntrinsicElements['group']) {
             rotation={[0, 0, 0.032]}
             scale={1.122}
             userData={{ name: 'Keyboard' }}
-          />
+          >
+            <DissolveMaterial
+              baseMaterial={materials.Objs5_Baked}
+              visible={true}
+              onFadeOut={onFadeOut}
+              color="#0082b2"
+            />
+          </mesh>
           <mesh
             name="MouseMat"
             geometry={nodes.Cube012_Baked.geometry}
@@ -584,7 +930,14 @@ export function Room(props: JSX.IntrinsicElements['group']) {
             rotation={[0, -1.493, -Math.PI]}
             scale={1.122}
             userData={{ name: 'MouseMat' }}
-          />
+          >
+            <DissolveMaterial
+              baseMaterial={materials.Objs5_Baked}
+              visible={true}
+              onFadeOut={onFadeOut}
+              color="#0082b2"
+            />
+          </mesh>
           <mesh
             name="Mouse"
             geometry={nodes.Sphere_Baked.geometry}
@@ -593,7 +946,14 @@ export function Room(props: JSX.IntrinsicElements['group']) {
             rotation={[Math.PI, -0.17, Math.PI]}
             scale={1.122}
             userData={{ name: 'Mouse' }}
-          />
+          >
+            <DissolveMaterial
+              baseMaterial={materials.Objs5_Baked}
+              visible={true}
+              onFadeOut={onFadeOut}
+              color="#0082b2"
+            />
+          </mesh>
           <mesh
             name="Cube025_Baked"
             geometry={nodes.Cube025_Baked.geometry}
@@ -601,7 +961,14 @@ export function Room(props: JSX.IntrinsicElements['group']) {
             position={[-2.476, 2.48, -17.063]}
             rotation={[-Math.PI / 2, 0, 0]}
             userData={{ name: 'Cube.025_Baked' }}
-          />
+          >
+            <DissolveMaterial
+              baseMaterial={materials.Objs6_Baked}
+              visible={true}
+              onFadeOut={onFadeOut}
+              color="#0082b2"
+            />
+          </mesh>
           <mesh
             name="Cube026_Baked"
             geometry={nodes.Cube026_Baked.geometry}
@@ -609,7 +976,14 @@ export function Room(props: JSX.IntrinsicElements['group']) {
             position={[-0.665, 2.877, -17.139]}
             rotation={[-Math.PI / 2, 0, -Math.PI / 2]}
             userData={{ name: 'Cube.026_Baked' }}
-          />
+          >
+            <DissolveMaterial
+              baseMaterial={materials.Objs6_Baked}
+              visible={true}
+              onFadeOut={onFadeOut}
+              color="#0082b2"
+            />
+          </mesh>
           <mesh
             name="Cube027_Baked"
             geometry={nodes.Cube027_Baked.geometry}
@@ -617,7 +991,14 @@ export function Room(props: JSX.IntrinsicElements['group']) {
             position={[-1.818, 5.059, -16.996]}
             rotation={[Math.PI, 1.571, 0]}
             userData={{ name: 'Cube.027_Baked' }}
-          />
+          >
+            <DissolveMaterial
+              baseMaterial={materials.Objs6_Baked}
+              visible={true}
+              onFadeOut={onFadeOut}
+              color="#0082b2"
+            />
+          </mesh>
           <mesh
             name="Cube029_Baked"
             geometry={nodes.Cube029_Baked.geometry}
@@ -625,7 +1006,14 @@ export function Room(props: JSX.IntrinsicElements['group']) {
             position={[-1.818, 2.051, -16.996]}
             rotation={[Math.PI, 1.571, 0]}
             userData={{ name: 'Cube.029_Baked' }}
-          />
+          >
+            <DissolveMaterial
+              baseMaterial={materials.Objs6_Baked}
+              visible={true}
+              onFadeOut={onFadeOut}
+              color="#0082b2"
+            />
+          </mesh>
           <mesh
             name="Cube030_Baked"
             geometry={nodes.Cube030_Baked.geometry}
@@ -633,21 +1021,42 @@ export function Room(props: JSX.IntrinsicElements['group']) {
             position={[1.63, 0.755, -16.945]}
             rotation={[Math.PI, 1.571, 0]}
             userData={{ name: 'Cube.030_Baked' }}
-          />
+          >
+            <DissolveMaterial
+              baseMaterial={materials.Objs6_Baked}
+              visible={true}
+              onFadeOut={onFadeOut}
+              color="#0082b2"
+            />
+          </mesh>
           <mesh
             name="Cube032_Baked"
             geometry={nodes.Cube032_Baked.geometry}
             material={materials.Objs6_Baked}
             position={[-4.008, 2.877, -15.67]}
             userData={{ name: 'Cube.032_Baked' }}
-          />
+          >
+            <DissolveMaterial
+              baseMaterial={materials.Objs6_Baked}
+              visible={true}
+              onFadeOut={onFadeOut}
+              color="#0082b2"
+            />
+          </mesh>
           <mesh
             name="Cube065_Baked"
             geometry={nodes.Cube065_Baked.geometry}
             material={materials.Objs6_Baked}
             position={[-6.719, 2.877, -15.595]}
             userData={{ name: 'Cube.065_Baked' }}
-          />
+          >
+            <DissolveMaterial
+              baseMaterial={materials.Objs6_Baked}
+              visible={true}
+              onFadeOut={onFadeOut}
+              color="#0082b2"
+            />
+          </mesh>
           <mesh
             name="Cylinder010_Baked"
             geometry={nodes.Cylinder010_Baked.geometry}
@@ -655,7 +1064,14 @@ export function Room(props: JSX.IntrinsicElements['group']) {
             position={[1.642, 4.534, -16.895]}
             rotation={[0, 0, -Math.PI / 2]}
             userData={{ name: 'Cylinder.010_Baked' }}
-          />
+          >
+            <DissolveMaterial
+              baseMaterial={materials.Objs6_Baked}
+              visible={true}
+              onFadeOut={onFadeOut}
+              color="#0082b2"
+            />
+          </mesh>
           <mesh
             name="NurbsPath002_Baked"
             geometry={nodes.NurbsPath002_Baked.geometry}
@@ -663,7 +1079,14 @@ export function Room(props: JSX.IntrinsicElements['group']) {
             position={[1.668, 4.247, -16.889]}
             rotation={[Math.PI, 0, Math.PI / 2]}
             userData={{ name: 'NurbsPath.002_Baked' }}
-          />
+          >
+            <DissolveMaterial
+              baseMaterial={materials.Objs6_Baked}
+              visible={true}
+              onFadeOut={onFadeOut}
+              color="#0082b2"
+            />
+          </mesh>
           <mesh
             name="Sphere004_Baked"
             geometry={nodes.Sphere004_Baked.geometry}
@@ -671,7 +1094,14 @@ export function Room(props: JSX.IntrinsicElements['group']) {
             position={[1.7, 0.825, -15.664]}
             rotation={[Math.PI / 2, 0, 0]}
             userData={{ name: 'Sphere.004_Baked' }}
-          />
+          >
+            <DissolveMaterial
+              baseMaterial={materials.Objs6_Baked}
+              visible={true}
+              onFadeOut={onFadeOut}
+              color="#0082b2"
+            />
+          </mesh>
           <mesh
             name="Uzi_Tshirt002_Baked"
             geometry={nodes.Uzi_Tshirt002_Baked.geometry}
@@ -679,7 +1109,14 @@ export function Room(props: JSX.IntrinsicElements['group']) {
             position={[1.061, 3.531, -16.898]}
             rotation={[Math.PI / 2, 0, -Math.PI / 2]}
             userData={{ name: 'Uzi Tshirt.002_Baked' }}
-          />
+          >
+            <DissolveMaterial
+              baseMaterial={materials.Objs6_Baked}
+              visible={true}
+              onFadeOut={onFadeOut}
+              color="#0082b2"
+            />
+          </mesh>
           <mesh
             name="chair_f003_Baked"
             geometry={nodes.chair_f003_Baked.geometry}
@@ -687,7 +1124,14 @@ export function Room(props: JSX.IntrinsicElements['group']) {
             position={[1.748, 1.179, -4.077]}
             rotation={[Math.PI / 2, 0, -2.776]}
             userData={{ name: 'chair_f.003_Baked' }}
-          />
+          >
+            <DissolveMaterial
+              baseMaterial={materials.Objs7_Baked}
+              visible={true}
+              onFadeOut={onFadeOut}
+              color="#0082b2"
+            />
+          </mesh>
           <mesh
             name="Cube014_Baked"
             geometry={nodes.Cube014_Baked.geometry}
@@ -696,7 +1140,14 @@ export function Room(props: JSX.IntrinsicElements['group']) {
             rotation={[Math.PI / 2, 0, 0]}
             scale={1.122}
             userData={{ name: 'Cube.014_Baked' }}
-          />
+          >
+            <DissolveMaterial
+              baseMaterial={materials.Objs4_Baked}
+              visible={true}
+              onFadeOut={onFadeOut}
+              color="#0082b2"
+            />
+          </mesh>
           <mesh
             name="Cube015_Baked"
             geometry={nodes.Cube015_Baked.geometry}
@@ -705,7 +1156,14 @@ export function Room(props: JSX.IntrinsicElements['group']) {
             rotation={[Math.PI / 2, 0, 0]}
             scale={1.122}
             userData={{ name: 'Cube.015_Baked' }}
-          />
+          >
+            <DissolveMaterial
+              baseMaterial={materials.Objs4_Baked}
+              visible={true}
+              onFadeOut={onFadeOut}
+              color="#0082b2"
+            />
+          </mesh>
           <mesh
             name="Cube016_Baked"
             geometry={nodes.Cube016_Baked.geometry}
@@ -714,7 +1172,14 @@ export function Room(props: JSX.IntrinsicElements['group']) {
             rotation={[-Math.PI, 0, 0]}
             scale={1.122}
             userData={{ name: 'Cube.016_Baked' }}
-          />
+          >
+            <DissolveMaterial
+              baseMaterial={materials.Objs4_Baked}
+              visible={true}
+              onFadeOut={onFadeOut}
+              color="#0082b2"
+            />
+          </mesh>
           <mesh
             name="Cube017_Baked"
             geometry={nodes.Cube017_Baked.geometry}
@@ -723,7 +1188,14 @@ export function Room(props: JSX.IntrinsicElements['group']) {
             rotation={[Math.PI / 2, 0, 0]}
             scale={1.122}
             userData={{ name: 'Cube.017_Baked' }}
-          />
+          >
+            <DissolveMaterial
+              baseMaterial={materials.Objs4_Baked}
+              visible={true}
+              onFadeOut={onFadeOut}
+              color="#0082b2"
+            />
+          </mesh>
           <mesh
             name="Cube018_Baked"
             geometry={nodes.Cube018_Baked.geometry}
@@ -732,35 +1204,70 @@ export function Room(props: JSX.IntrinsicElements['group']) {
             rotation={[-Math.PI, 0, 0]}
             scale={1.122}
             userData={{ name: 'Cube.018_Baked' }}
-          />
+          >
+            <DissolveMaterial
+              baseMaterial={materials.Objs4_Baked}
+              visible={true}
+              onFadeOut={onFadeOut}
+              color="#0082b2"
+            />
+          </mesh>
           <mesh
             name="PC"
             geometry={nodes.Cube066_Baked.geometry}
             material={materials.Objs4_Baked}
             position={[6.756, 0.251, -1.028]}
             userData={{ name: 'PC' }}
-          />
+          >
+            <DissolveMaterial
+              baseMaterial={materials.Objs4_Baked}
+              visible={true}
+              onFadeOut={onFadeOut}
+              color="#0082b2"
+            />
+          </mesh>
           <mesh
             name="Cube068_Baked"
             geometry={nodes.Cube068_Baked.geometry}
             material={materials.Objs4_Baked}
             position={[7.115, -0.465, -7.026]}
             userData={{ name: 'Cube.068_Baked' }}
-          />
+          >
+            <DissolveMaterial
+              baseMaterial={materials.Objs4_Baked}
+              visible={true}
+              onFadeOut={onFadeOut}
+              color="#0082b2"
+            />
+          </mesh>
           <mesh
             name="Cube069_Baked"
             geometry={nodes.Cube069_Baked.geometry}
             material={materials.Objs4_Baked}
             position={[7.115, 0.604, -6.891]}
             userData={{ name: 'Cube.069_Baked' }}
-          />
+          >
+            <DissolveMaterial
+              baseMaterial={materials.Objs4_Baked}
+              visible={true}
+              onFadeOut={onFadeOut}
+              color="#0082b2"
+            />
+          </mesh>
           <mesh
             name="Plane003_Baked"
             geometry={nodes.Plane003_Baked.geometry}
             material={materials.Objs4_Baked}
             position={[6.62, 1.905, -3.403]}
             userData={{ name: 'Plane.003_Baked' }}
-          />
+          >
+            <DissolveMaterial
+              baseMaterial={materials.Objs4_Baked}
+              visible={true}
+              onFadeOut={onFadeOut}
+              color="#0082b2"
+            />
+          </mesh>
           <mesh
             name="Plane005_Baked"
             geometry={nodes.Plane005_Baked.geometry}
@@ -769,14 +1276,28 @@ export function Room(props: JSX.IntrinsicElements['group']) {
             rotation={[0, 0, Math.PI]}
             scale={1.122}
             userData={{ name: 'Plane.005_Baked' }}
-          />
+          >
+            <DissolveMaterial
+              baseMaterial={materials.Objs4_Baked}
+              visible={true}
+              onFadeOut={onFadeOut}
+              color="#0082b2"
+            />
+          </mesh>
           <mesh
             name="Cube003_Baked"
             geometry={nodes.Cube003_Baked.geometry}
             material={materials.Main_Baked}
             position={[-0.975, 4.132, -8.716]}
             userData={{ name: 'Cube.003_Baked' }}
-          />
+          >
+            <DissolveMaterial
+              baseMaterial={materials.Main_Baked}
+              visible={true}
+              onFadeOut={onFadeOut}
+              color="#0082b2"
+            />
+          </mesh>
           <mesh
             name="Cube004_Baked"
             geometry={nodes.Cube004_Baked.geometry}
@@ -784,7 +1305,14 @@ export function Room(props: JSX.IntrinsicElements['group']) {
             position={[-0.975, 4.132, -8.716]}
             scale={[10.028, 4.819, 10.028]}
             userData={{ name: 'Cube.004_Baked' }}
-          />
+          >
+            <DissolveMaterial
+              baseMaterial={materials.Main_Baked}
+              visible={true}
+              onFadeOut={onFadeOut}
+              color="#0082b2"
+            />
+          </mesh>
           <mesh
             name="Floor"
             geometry={nodes.Cube005_Baked.geometry}
@@ -792,7 +1320,14 @@ export function Room(props: JSX.IntrinsicElements['group']) {
             position={[-0.975, 4.132, -8.716]}
             userData={{ name: 'Floor' }}
             visible={true}
-          />
+          >
+            <DissolveMaterial
+              baseMaterial={materials.Main_Baked}
+              visible={true}
+              onFadeOut={onFadeOut}
+              color="#0082b2"
+            />
+          </mesh>
           <mesh
             name="Plane001_Baked"
             geometry={nodes.Plane001_Baked.geometry}
@@ -800,7 +1335,14 @@ export function Room(props: JSX.IntrinsicElements['group']) {
             position={[-10.973, 4.114, -7.512]}
             rotation={[0, 0, -Math.PI / 2]}
             userData={{ name: 'Plane.001_Baked' }}
-          />
+          >
+            <DissolveMaterial
+              baseMaterial={materials.Main_Baked}
+              visible={true}
+              onFadeOut={onFadeOut}
+              color="#0082b2"
+            />
+          </mesh>
           <mesh
             name="Cube010_Baked"
             geometry={nodes.Cube010_Baked.geometry}
@@ -808,7 +1350,14 @@ export function Room(props: JSX.IntrinsicElements['group']) {
             position={[9, 2.703, -12.649]}
             rotation={[-Math.PI / 2, 0, -Math.PI / 2]}
             userData={{ name: 'Cube.010_Baked' }}
-          />
+          >
+            <DissolveMaterial
+              baseMaterial={materials.Objs1_Baked}
+              visible={true}
+              onFadeOut={onFadeOut}
+              color="#0082b2"
+            />
+          </mesh>
           <mesh
             name="Cube022_Baked"
             geometry={nodes.Cube022_Baked.geometry}
@@ -816,7 +1365,14 @@ export function Room(props: JSX.IntrinsicElements['group']) {
             position={[9.004, 2.069, -12.654]}
             rotation={[-Math.PI / 2, 0, -Math.PI / 2]}
             userData={{ name: 'Cube.022_Baked' }}
-          />
+          >
+            <DissolveMaterial
+              baseMaterial={materials.Objs1_Baked}
+              visible={true}
+              onFadeOut={onFadeOut}
+              color="#0082b2"
+            />
+          </mesh>
           <mesh
             name="Cube023_Baked"
             geometry={nodes.Cube023_Baked.geometry}
@@ -824,7 +1380,14 @@ export function Room(props: JSX.IntrinsicElements['group']) {
             position={[9, 2.758, -12.649]}
             rotation={[-Math.PI / 2, 0, -Math.PI / 2]}
             userData={{ name: 'Cube.023_Baked' }}
-          />
+          >
+            <DissolveMaterial
+              baseMaterial={materials.Objs1_Baked}
+              visible={true}
+              onFadeOut={onFadeOut}
+              color="#0082b2"
+            />
+          </mesh>
           <mesh
             name="Cube031_Baked"
             geometry={nodes.Cube031_Baked.geometry}
@@ -832,7 +1395,14 @@ export function Room(props: JSX.IntrinsicElements['group']) {
             position={[9.004, 5.437, -12.654]}
             rotation={[-Math.PI / 2, 0, -Math.PI / 2]}
             userData={{ name: 'Cube.031_Baked' }}
-          />
+          >
+            <DissolveMaterial
+              baseMaterial={materials.Objs1_Baked}
+              visible={true}
+              onFadeOut={onFadeOut}
+              color="#0082b2"
+            />
+          </mesh>
           <mesh
             name="Sphere001_Baked"
             geometry={nodes.Sphere001_Baked.geometry}
@@ -840,7 +1410,14 @@ export function Room(props: JSX.IntrinsicElements['group']) {
             position={[8.844, 2.248, -11.113]}
             rotation={[0, 0, -Math.PI / 2]}
             userData={{ name: 'Sphere.001_Baked' }}
-          />
+          >
+            <DissolveMaterial
+              baseMaterial={materials.Objs1_Baked}
+              visible={true}
+              onFadeOut={onFadeOut}
+              color="#0082b2"
+            />
+          </mesh>
           <mesh
             name="Cube034_Baked"
             geometry={nodes.Cube034_Baked.geometry}
@@ -848,7 +1425,14 @@ export function Room(props: JSX.IntrinsicElements['group']) {
             position={[-0.166, 4.433, 1.411]}
             rotation={[-Math.PI / 2, 0, 0]}
             userData={{ name: 'Cube.034_Baked' }}
-          />
+          >
+            <DissolveMaterial
+              baseMaterial={materials.Objs1_Baked}
+              visible={true}
+              onFadeOut={onFadeOut}
+              color="#0082b2"
+            />
+          </mesh>
           <mesh
             name="Cube035_Baked"
             geometry={nodes.Cube035_Baked.geometry}
@@ -856,7 +1440,14 @@ export function Room(props: JSX.IntrinsicElements['group']) {
             position={[-0.166, 4.542, 1.5]}
             rotation={[-0.615, 0, 0]}
             userData={{ name: 'Cube.035_Baked' }}
-          />
+          >
+            <DissolveMaterial
+              baseMaterial={materials.Objs1_Baked}
+              visible={true}
+              onFadeOut={onFadeOut}
+              color="#0082b2"
+            />
+          </mesh>
           <mesh
             name="curtain001_Baked"
             geometry={nodes.curtain001_Baked.geometry}
@@ -864,7 +1455,14 @@ export function Room(props: JSX.IntrinsicElements['group']) {
             position={[3.085, 3.743, 1.018]}
             rotation={[Math.PI, 0, Math.PI]}
             userData={{ name: 'curtain.001_Baked' }}
-          />
+          >
+            <DissolveMaterial
+              baseMaterial={materials.Objs1_Baked}
+              visible={true}
+              onFadeOut={onFadeOut}
+              color="#0082b2"
+            />
+          </mesh>
           <mesh
             name="curtain002_Baked"
             geometry={nodes.curtain002_Baked.geometry}
@@ -872,7 +1470,14 @@ export function Room(props: JSX.IntrinsicElements['group']) {
             position={[-3.586, 4.069, 1.082]}
             rotation={[Math.PI, 0, Math.PI]}
             userData={{ name: 'curtain.002_Baked' }}
-          />
+          >
+            <DissolveMaterial
+              baseMaterial={materials.Objs1_Baked}
+              visible={true}
+              onFadeOut={onFadeOut}
+              color="#0082b2"
+            />
+          </mesh>
           <mesh
             name="Cylinder012_Baked"
             geometry={nodes.Cylinder012_Baked.geometry}
@@ -880,7 +1485,14 @@ export function Room(props: JSX.IntrinsicElements['group']) {
             position={[0.004, 6.867, 1.094]}
             rotation={[0, 0, -Math.PI / 2]}
             userData={{ name: 'Cylinder.012_Baked' }}
-          />
+          >
+            <DissolveMaterial
+              baseMaterial={materials.Objs1_Baked}
+              visible={true}
+              onFadeOut={onFadeOut}
+              color="#0082b2"
+            />
+          </mesh>
           <mesh
             name="Sphere003_Baked"
             geometry={nodes.Sphere003_Baked.geometry}
@@ -888,7 +1500,14 @@ export function Room(props: JSX.IntrinsicElements['group']) {
             position={[0.004, 6.872, 1.083]}
             rotation={[0, 0, -Math.PI / 2]}
             userData={{ name: 'Sphere.003_Baked' }}
-          />
+          >
+            <DissolveMaterial
+              baseMaterial={materials.Objs1_Baked}
+              visible={true}
+              onFadeOut={onFadeOut}
+              color="#0082b2"
+            />
+          </mesh>
           <mesh
             name="Cube019_Baked"
             geometry={nodes.Cube019_Baked.geometry}
@@ -896,7 +1515,14 @@ export function Room(props: JSX.IntrinsicElements['group']) {
             position={[8.946, 5.549, -3.81]}
             rotation={[0, 0, -Math.PI / 2]}
             userData={{ name: 'Cube.019_Baked' }}
-          />
+          >
+            <DissolveMaterial
+              baseMaterial={materials.Objs5_Baked}
+              visible={true}
+              onFadeOut={onFadeOut}
+              color="#0082b2"
+            />
+          </mesh>
           <mesh
             name="Cube020_Baked"
             geometry={nodes.Cube020_Baked.geometry}
@@ -904,7 +1530,14 @@ export function Room(props: JSX.IntrinsicElements['group']) {
             position={[8.798, 4.349, -3.302]}
             rotation={[-Math.PI, 0, 0]}
             userData={{ name: 'Cube.020_Baked' }}
-          />
+          >
+            <DissolveMaterial
+              baseMaterial={materials.Objs5_Baked}
+              visible={true}
+              onFadeOut={onFadeOut}
+              color="#0082b2"
+            />
+          </mesh>
           <mesh
             name="Cylinder002_Baked"
             geometry={nodes.Cylinder002_Baked.geometry}
@@ -912,7 +1545,14 @@ export function Room(props: JSX.IntrinsicElements['group']) {
             position={[8.801, 4.437, -3.27]}
             rotation={[Math.PI / 2, 0, 0]}
             userData={{ name: 'Cylinder.002_Baked' }}
-          />
+          >
+            <DissolveMaterial
+              baseMaterial={materials.Objs5_Baked}
+              visible={true}
+              onFadeOut={onFadeOut}
+              color="#0082b2"
+            />
+          </mesh>
           <mesh
             name="Cylinder006_Baked"
             geometry={nodes.Cylinder006_Baked.geometry}
@@ -920,7 +1560,14 @@ export function Room(props: JSX.IntrinsicElements['group']) {
             position={[8.601, 4.437, -3.286]}
             rotation={[Math.PI / 2, 0, 0]}
             userData={{ name: 'Cylinder.006_Baked' }}
-          />
+          >
+            <DissolveMaterial
+              baseMaterial={materials.Objs5_Baked}
+              visible={true}
+              onFadeOut={onFadeOut}
+              color="#0082b2"
+            />
+          </mesh>
           <mesh
             name="Cylinder_Baked"
             geometry={nodes.Cylinder_Baked.geometry}
@@ -928,7 +1575,14 @@ export function Room(props: JSX.IntrinsicElements['group']) {
             position={[8.706, 4.437, -3.525]}
             rotation={[Math.PI / 2, 0, 0]}
             userData={{ name: 'Cylinder_Baked' }}
-          />
+          >
+            <DissolveMaterial
+              baseMaterial={materials.Objs5_Baked}
+              visible={true}
+              onFadeOut={onFadeOut}
+              color="#0082b2"
+            />
+          </mesh>
         </group>
       </group>
       {console.log(bedRef.current)}
