@@ -15,6 +15,14 @@ export default function Player(props) {
   const [isMoving, setIsMoving] = useState(false);
 
   useEffect(() => {
+    if (ref.current) {
+      ref.current.position.x = 8.78;
+      ref.current.position.y = 6.8;
+      ref.current.position.z = 0;
+
+      ref.current.rotation.y = 1;
+      ref.current.rotation.z = 0;
+    }
     const handleKeyDown = (event) => {
       if (event.key === 'w' || event.key === 'W') {
         setIsMoving(true);
@@ -36,17 +44,16 @@ export default function Player(props) {
     };
   }, []);
 
-  if (ref.current) {
-    ref.current.position.x = 8.78;
-    ref.current.position.y = 6.8;
-    ref.current.position.z = 0;
-
-    ref.current.rotation.y = 1;
-    ref.current.rotation.z = 0;
-  }
-
   useFrame(() => {
-    actions['scary_wake.001']?.play();
+    const action = actions['scary_wake.001'];
+    if (action) {
+      action.play();
+      action.setDuration(5);
+
+      setTimeout(() => {
+        action.halt().loop();
+      }, 3000);
+    }
   });
 
   // useFrame(() => {

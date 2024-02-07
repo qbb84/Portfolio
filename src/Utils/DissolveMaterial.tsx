@@ -40,8 +40,8 @@ export default function DissolveMaterial({
   baseMaterial,
   thickness = 0.1,
   color = '#eb5a13',
-  intensity = 50,
-  duration = 1.2,
+  intensity = 3,
+  duration = 2,
   visible = true,
   onFadeOut,
 }) {
