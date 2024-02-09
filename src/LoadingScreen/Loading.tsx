@@ -56,8 +56,6 @@ export default function Loading() {
   const [isClicked, setIsClicked] = useState(false);
   const [showBlink, setShowBlink] = useState(false);
 
-  const { setHudLoaded } = useContext(HudLoadContext);
-
   useEffect(() => {
     const blinkTimeout = setTimeout(() => {
       setShowBlink(true); // Update this line
@@ -69,19 +67,17 @@ export default function Loading() {
     if (!isClicked) {
       const timeoutId = setTimeout(() => {
         setShowIntro(true);
-        setHudLoaded(false);
       }, 30100);
 
       return () => {
         clearTimeout(timeoutId);
       };
     }
-  }, [setHudLoaded, setShowIntro, isClicked]);
+  }, [setShowIntro, isClicked]);
 
   const handlePlayClick = () => {
     setIsClicked(true);
     //TODO Update hud after intro anim
-    setHudLoaded(false);
     setTimeout(() => {
       setShowIntro(true);
     }, 1100);

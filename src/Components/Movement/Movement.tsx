@@ -36,13 +36,13 @@ export default function Movement() {
   //   ]);
   // });
 
-  useFrame((state, delta) => {
+  useFrame((state) => {
     const { forward, backward, left, right } = getState();
     const velocity = ref.current!.linvel();
     // update camera
     const translation = ref.current
       ? ref.current.translation()
-      : { x: 15, y: 15.114732519462178, z: 13.81515247860525 };
+      : { x: 9, y: 10, z: 7 };
 
     state.camera.position.set(
       translation.x,
@@ -84,14 +84,14 @@ export default function Movement() {
         colliders={false}
         mass={0}
         type="dynamic"
-        position={[15, 10.114732519462178, 13.81515247860525]}
+        position={[9, 10, 5]}
         enabledRotations={[false, false, false]}
       >
         <CapsuleCollider args={[1, 0.5]} />
       </RigidBody>
 
       <ambientLight
-        position={[camera.position.x, camera.position.y, camera.position.z]}
+        position={[camera.position.x, 8, camera.position.z]}
         intensity={1}
       />
       <PointerLockControls />

@@ -122,7 +122,6 @@ type GLTFResult = GLTF & {
 
 export function Room(props: JSX.IntrinsicElements['group']) {
   const { nodes, materials } = useGLTF('/Portfolio_room.glb') as GLTFResult;
-  const { scene, camera } = useThree();
   const { isVisible } = useContext(VisibilityContext);
 
   const bedRef = useRef();

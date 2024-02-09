@@ -1,37 +1,86 @@
 import { useFrame, useThree } from '@react-three/fiber';
 import { Physics, RigidBody } from '@react-three/rapier';
-import { useRef, useState } from 'react';
-import { SpotLight, Vector3 } from 'three';
+import { useContext, useEffect, useRef, useState } from 'react';
+import { Euler, Quaternion, SpotLight, Vector3 } from 'three';
 import Player from '../Components/ModelRender/Player';
 import { Room } from '../Components/ModelRender/Room';
 import Debug from '../Components/Test/Debug';
 
+import * as THREE from 'three';
+import Movement from '../Components/Movement/Movement';
+import { HudLoadContext } from '../Components/Hud/HudLoadContext';
+
 export default function Intro() {
   const { camera } = useThree();
-  camera.position.y += 15;
-  // camera.position.z += 20;
-  camera.position.x += 10.78;
+
+  useEffect(() => {
+    camera.position.y += 15;
+    camera.position.x += 10.78;
+  }, []);
+
   const targetPosition = new Vector3(10.8, 10.0, 2);
-
   const [loadRoom, setLoadRoom] = useState(false);
+  const [rotationStarted, setRotationStarted] = useState(false);
+  const [moveToCenter, setMoveToCenter] = useState(false);
+  const [walkable, setWalkable] = useState(false);
+  const centerPosition = new Vector3(9, 10, 6);
+  let angle = 0;
+  let rotationSpeed = 0;
 
-  useFrame(({ camera, clock }) => {
-    const lerpFactor = 0.01;
+  const targetRotation = new THREE.Quaternion();
+  targetRotation.setFromEuler(new THREE.Euler(0, 0, 0, 'XYZ'));
 
-    // Interpolate the camera's position
-    camera.position.lerp(targetPosition, lerpFactor);
+  const { setHudLoaded } = useContext(HudLoadContext);
 
-    // Update the camera's projection matrix
-    camera.updateProjectionMatrix();
+  useFrame(({ camera }) => {
+    if (!rotationStarted) {
+      const lerpFactor = 0.01;
 
-    if (camera.position.distanceTo(targetPosition) < 0.2) {
-      camera.position.copy(targetPosition);
+      // Interpolate the camera's position
+      camera.position.lerp(targetPosition, lerpFactor);
+
+      camera.updateProjectionMatrix();
+
+      if (camera.position.distanceTo(targetPosition) < 0.2) {
+        camera.position.copy(targetPosition);
+        setRotationStarted(true);
+      }
+      setTimeout(() => {
+        setMoveToCenter(true);
+        setTimeout(() => {
+          setWalkable(true);
+          setHudLoaded(true);
+        }, 1000);
+      }, 11060);
+    } else if (!moveToCenter) {
+      rotationSpeed += (0.01 - rotationSpeed) * 0.01;
+      angle += rotationSpeed;
+
+      const roomWidth = 10;
+      const roomDepth = 30;
+      const radius = Math.min(roomWidth, roomDepth) / 2;
+      const x = targetPosition.x + radius * Math.sin(angle);
+      const z = targetPosition.z + radius * Math.cos(angle);
+      camera.position.set(x, targetPosition.y, z);
+
+      camera.lookAt(targetPosition);
+
+      camera.updateProjectionMatrix();
+    } else {
+      const lerpFactor = 0.01;
+
+      // Interpolate the camera's position towards the center of the room
+      camera.position.lerp(centerPosition, lerpFactor);
+      // Update the camera's projection matrix
+      camera.updateProjectionMatrix();
     }
   });
 
-  setTimeout(() => {
-    setLoadRoom(true);
-  }, 3000);
+  useEffect(() => {
+    setTimeout(() => {
+      setLoadRoom(true);
+    }, 2000);
+  });
 
   return (
     <>
@@ -41,15 +90,19 @@ export default function Intro() {
             <Room position={[5, 5, 5]} rotation={[0, 4.4, 0]} />
           </RigidBody>
 
-          {/* <Movement /> */}
+          {walkable && (
+            <>
+              <Movement />
+            </>
+          )}
         </Physics>
       )}
       <Player />
       {/* 
       <spotLight position={targetPosition} intensity={30} scale={10} /> */}
-      <ambientLight position={targetPosition} />
+      <spotLight position={targetPosition} color={'white'} intensity={10} />
 
-      <Debug />
+      {/* <Debug /> */}
     </>
   );
 }
