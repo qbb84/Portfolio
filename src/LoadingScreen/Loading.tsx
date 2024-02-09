@@ -1,12 +1,13 @@
 import { CameraShake, Float, Html, useProgress } from '@react-three/drei';
 import { Physics, RigidBody } from '@react-three/rapier';
-import { Suspense, useContext, useEffect, useState } from 'react';
+import { Suspense, useContext, useEffect, useRef, useState } from 'react';
 import { Room } from '../Components/ModelRender/Room';
 import Movement from '../Components/Movement/Movement';
 import Debug from '../Components/Test/Debug';
 import Intro from './Intro';
 import { HudLoadContext } from '../Components/Hud/HudLoadContext';
 import HudDisplay from '../Components/Hud/HudDisplay';
+import { useThree } from '@react-three/fiber';
 
 function Load({ handlePlayClick }) {
   const { progress } = useProgress();
@@ -50,11 +51,10 @@ function Load({ handlePlayClick }) {
 }
 
 export default function Loading() {
+  const [showIntro, setShowIntro] = useState(false);
   const [showMainContent, setShowMainContent] = useState(false);
   const [isClicked, setIsClicked] = useState(false);
   const [showBlink, setShowBlink] = useState(false);
-
-  const { setHudLoaded } = useContext(HudLoadContext);
 
   useEffect(() => {
     const blinkTimeout = setTimeout(() => {
@@ -64,27 +64,28 @@ export default function Loading() {
   }, []);
 
   useEffect(() => {
-    const timeoutId = setTimeout(() => {
-      setShowMainContent(true);
-      setHudLoaded(true);
-    }, 30100);
+    if (!isClicked) {
+      const timeoutId = setTimeout(() => {
+        setShowIntro(true);
+      }, 30100);
 
-    return () => {
-      clearTimeout(timeoutId);
-    };
-  }, [setHudLoaded, setShowMainContent]);
+      return () => {
+        clearTimeout(timeoutId);
+      };
+    }
+  }, [setShowIntro, isClicked]);
 
   const handlePlayClick = () => {
     setIsClicked(true);
-    setHudLoaded(true);
+    //TODO Update hud after intro anim
     setTimeout(() => {
-      setShowMainContent(true);
+      setShowIntro(true);
     }, 1100);
   };
 
   return (
     <Suspense fallback={<Load handlePlayClick={undefined} />}>
-      {!showMainContent && (
+      {!showIntro && (
         <>
           {showBlink && <Blink />}
           <Load handlePlayClick={handlePlayClick} />
@@ -96,23 +97,12 @@ export default function Loading() {
           )}
         </>
       )}
-      {showMainContent && (
+      {showIntro && (
         <>
           <Intro />
-          /* Playstate */
-          <Physics gravity={[0, -20, 0]} debug={false}>
-            {/* <Lighting /> */}
-
-            <Movement />
-            <RigidBody type="fixed" colliders="trimesh">
-              <Room position={[5, 5, 5]} rotation={[0, 4.4, 0]} />
-            </RigidBody>
-            {/* <CuboidCollider args={[1000, 5, 1000]} /> */}
-          </Physics>
-          <Debug />
-          /* */
         </>
       )}
+      {showMainContent && <>/* Playstate */</>}
     </Suspense>
   );
 }

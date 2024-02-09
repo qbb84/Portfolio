@@ -199,7 +199,7 @@ body,
   margin-right: -100vh;
   background: radial-gradient(90% 80% at bottom, transparent 60%, #050505 0%);
   visibility: visible;
-  animation: blinkNewScene 1s 0.5s ease-in-out;
+  animation: blinkNewScene 1.1s 0.5s ease-in-out;
   overflow: hidden;
   filter: blur(3px);
 }
@@ -218,7 +218,7 @@ body,
   bottom: 10px;
   transform: rotatex(180deg);
   transform-origin: top;
-  animation: blinkNewScene 1s 0.5s ease-in-out;
+  animation: blinkNewScene 1.1s 0.5s ease-in-out;
 }
 .container {
   animation: blur 2s 1s forwards;

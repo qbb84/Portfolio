@@ -38,7 +38,6 @@ function App() {
             }}
           >
             <Loading />
-            <OrbitControl />
           </Canvas>
         </HudLoadProvider>
       </>

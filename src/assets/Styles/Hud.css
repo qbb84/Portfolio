@@ -212,6 +212,7 @@
 .profile-img:hover,
 .question-img:hover {
   animation: ld-jingle 2s;
+  cursor: pointer;
 }
 
 .question-img {
