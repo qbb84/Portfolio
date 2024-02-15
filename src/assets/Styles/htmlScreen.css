@@ -11,23 +11,24 @@
 
 .Portfolio {
   position: absolute;
-  width: 60px;
-  height: 60px;
+  width: 40px;
+  height: 40px;
   left: 10%;
   top: 20%;
   background-image: url('/public/images/professional-portfolio.png');
   background-size: 100%;
 }
 
-.Portfolio:hover {
+.Portfolio:hover,
+.About:hover {
   transform: scale(0.99);
   cursor: pointer;
 }
 
 .text {
   position: absolute;
-  top: 36%;
-  left: 10%;
+  top: 30%;
+  left: 8%;
   color: white;
   transform: scaleX(-1);
 }
@@ -40,6 +41,17 @@
 
   right: 20%;
   top: 40%;
+
+  background-image: url('/public/images/professional-portfolio.png');
+  background-size: 100%;
+}
+
+.aboutText {
+  position: absolute;
+  top: 50%;
+  right: 20%;
+  color: white;
+  transform: scaleX(-1);
 }
 
 .taskbar {
