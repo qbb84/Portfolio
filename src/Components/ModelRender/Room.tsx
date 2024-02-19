@@ -1612,20 +1612,20 @@ export function Room(props: JSX.IntrinsicElements['group']) {
         transform
         wrapperClass="portfolioScreen"
         distanceFactor={2}
-        position={[5.55, 8, 13.3]}
+        position={[5.6, 8, 13.2]}
         rotation={[0.1, -0.3, 0.03]}
         zIndexRange={[-5]}
       >
         <iframe src="portfolio.html"></iframe>
       </Html>
-      <Text3D
+      {/* <Text3D
         font={'/public/fonts/Alloy Ink_Regular.json'}
         position={[6.1, 9, 13.5]}
         scale={0.3}
         rotation={[0, Math.PI * 0.9, 0.0]}
       >
         Here!
-      </Text3D>
+      </Text3D> */}
     </>
   );
 }
