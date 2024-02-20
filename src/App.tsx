@@ -11,6 +11,7 @@ import {
   HudLoadProvider,
 } from './Components/Hud/HudLoadContext';
 import { useState } from 'react';
+import AboutMe from './Components/ComputerScreen/AboutMe';
 
 function App() {
   const [hudLoaded, setHudLoaded] = useState(HudLoadContext);

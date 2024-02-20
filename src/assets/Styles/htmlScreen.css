@@ -1,0 +1,105 @@
+.portfolioScreen iframe {
+  width: 480px;
+  height: 280px;
+  background-image: url('/public/images/background.jpg');
+  background-size: 100%;
+  border-radius: 1%;
+  border-color: none;
+
+  z-index: -1;
+}
+
+.Portfolio {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  left: 10%;
+  top: 20%;
+  background-image: url('/public/images/professional-portfolio.png');
+  background-size: 100%;
+}
+
+.Portfolio:hover,
+.About:hover {
+  transform: scale(0.99);
+  cursor: pointer;
+}
+
+.text {
+  position: absolute;
+  top: 30%;
+  left: 8%;
+  color: white;
+  transform: scaleX(-1);
+}
+
+.About {
+  position: absolute;
+
+  width: 40px;
+  height: 40px;
+
+  right: 20%;
+  top: 40%;
+
+  background-image: url('/public/images/professional-portfolio.png');
+  background-size: 100%;
+}
+
+.aboutText {
+  position: absolute;
+  top: 50%;
+  right: 20%;
+  color: white;
+  transform: scaleX(-1);
+}
+
+.taskbar {
+  width: 100%;
+  left: 0%;
+  height: 15px;
+  position: absolute;
+  bottom: 0%;
+  transform: scaleX(-1);
+  opacity: 0.8;
+}
+
+.portfolioClicked {
+  position: absolute;
+  width: 400px;
+  height: 250px;
+  background-color: white;
+  z-index: 9999;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: none;
+  animation: fadeIn;
+  animation-duration: 1s;
+}
+
+.Exit {
+  position: absolute;
+  top: 0%;
+  left: 0%;
+  width: 20px;
+  height: 20px;
+}
+
+.exit-button {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  background-size: cover;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  border: none;
+  outline: none;
+}
+
+.Exit:hover {
+  cursor: pointer;
+  background-color: rgba(255, 0, 0, 0.411) !important;
+  opacity: 0.5;
+}
