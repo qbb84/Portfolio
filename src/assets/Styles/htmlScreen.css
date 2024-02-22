@@ -78,10 +78,18 @@
   animation-duration: 1s;
 }
 
-.Exit {
+.aboutExit {
   position: absolute;
   top: 0%;
   left: 0%;
+  width: 20px;
+  height: 20px;
+}
+
+.portfolioExit {
+  position: absolute;
+  top: 0%;
+  right: 95%;
   width: 20px;
   height: 20px;
 }
@@ -98,8 +106,23 @@
   outline: none;
 }
 
-.Exit:hover {
+.aboutExit:hover,
+.portfolioExit:hover {
   cursor: pointer;
   background-color: rgba(255, 0, 0, 0.411) !important;
   opacity: 0.5;
+}
+
+.aboutClicked {
+  position: absolute;
+  width: 400px;
+  height: 250px;
+  background-color: white;
+  z-index: 9999;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: none;
+  animation: fadeIn;
+  animation-duration: 1s;
 }
